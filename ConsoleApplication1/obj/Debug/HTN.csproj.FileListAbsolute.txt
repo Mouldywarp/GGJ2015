@@ -1,0 +1,6 @@
+C:\Users\Moley\Documents\Moley's Docs\Uni\Final Year Project\War Game SFMLDotNet\WarGame\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\Moley\Documents\Moley's Docs\Uni\Final Year Project\War Game SFMLDotNet\WarGame\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\Moley\Documents\Moley's Docs\Uni\Final Year Project\War Game SFMLDotNet\WarGame\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\Moley\Documents\Moley's Docs\Uni\Final Year Project\War Game SFMLDotNet\WarGame\ConsoleApplication1\obj\Debug\HTN.csprojResolveAssemblyReference.cache
+C:\Users\Moley\Documents\Moley's Docs\Uni\Final Year Project\War Game SFMLDotNet\WarGame\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\Moley\Documents\Moley's Docs\Uni\Final Year Project\War Game SFMLDotNet\WarGame\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
