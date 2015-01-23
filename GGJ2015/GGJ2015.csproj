@@ -47,7 +47,9 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\game\Assets.cs" />
     <Compile Include="src\game\Game.cs" />
+    <Compile Include="src\game\Time.cs" />
     <Compile Include="src\Main.cs">
       <SubType>Code</SubType>
     </Compile>
