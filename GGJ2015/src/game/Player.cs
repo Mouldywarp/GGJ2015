@@ -9,27 +9,29 @@ using SFML.Window;
 class Player : Drawable
 {
 
-    const float SPEED = 300;
+    const float SPEED = 180;
 
     const float BULLETSPEED = 1000;
     const float RATEOFFIRE = 0.035f;
 
     static float _timer;
 
-    Sprite _johnBervege;
-    Vector2f _velocity;
-    Vector2f _acceleration;
-    Vector2f _position;
-
     bool _creep;
     BulletManager _cuntingtonSmithe;
     float _radius;
     Random random = new Random();
+
+
+    Sprite _sprite;
+    Vector2f _velocity;
+    public Vector2f position { set { _sprite.Position = value; } get { return _sprite.Position; } }
+    float radius { get { return _radius; } }
+
     public Player(Vector2f Position, BulletManager bmIns)
     {
-        _johnBervege = new Sprite(Assets.GetTexture("../../images/ship.png"));
-        _johnBervege.Position = Position;
-        _johnBervege.Origin = new Vector2f(32,16);
+        _sprite = new Sprite(Assets.GetTexture("../../images/ship.png"));
+        _sprite.Position = Position;
+        _sprite.Origin = new Vector2f(32, 16);
         _radius = 16;
         _cuntingtonSmithe = bmIns;
         _creep = false;
@@ -69,11 +71,11 @@ class Player : Drawable
     {
         if (_creep == true)
         {
-            _johnBervege.Position += (_velocity/2) * Time.deltaTime;
+            _sprite.Position += (_velocity / 2) * Time.deltaTime;
         }
         else
         {
-            _johnBervege.Position += _velocity * Time.deltaTime;
+            _sprite.Position += _velocity * Time.deltaTime;
         }
     }
 
@@ -82,7 +84,7 @@ class Player : Drawable
         if (_timer > RATEOFFIRE)
         {
             _timer = 0;
-            _cuntingtonSmithe.CreateBullet(Bullet.Shooter.PLAYER, _johnBervege.Position, new Vector2f(_velocity.X + BULLETSPEED, 0));
+            _cuntingtonSmithe.CreateBullet(Bullet.Shooter.PLAYER, position, new Vector2f(_velocity.X + BULLETSPEED, 0));
         }
     }
 
@@ -90,14 +92,14 @@ class Player : Drawable
     {
         _timer += Time.deltaTime;
 
+        handleInput();
         Move();
         FireBullet();
-        handleInput();
     }
 
     public void Draw(RenderTarget target, RenderStates states)
     {
-        target.Draw(_johnBervege);
+        target.Draw(_sprite);
     }
 
 }
