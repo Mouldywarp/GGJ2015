@@ -53,6 +53,7 @@
     <Compile Include="src\game\BulletManager.cs" />
     <Compile Include="src\game\Game.cs" />
     <Compile Include="src\game\CircleMath.cs" />
+    <Compile Include="src\game\Input.cs" />
     <Compile Include="src\game\Planet.cs" />
     <Compile Include="src\game\PlanetManager.cs" />
     <Compile Include="src\game\TileMath.cs" />

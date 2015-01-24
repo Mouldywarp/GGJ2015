@@ -35,6 +35,8 @@ public class Game
         // Event handlers - Add other events such as input in same way!!
         _window.Closed += new EventHandler(OnClosed); // Exactly same as Closed += OnClosed. Slightly different syntax but seems to work exactly the same
         _window.Resized += new EventHandler<SizeEventArgs>(OnResize); // Resize event handler
+        _window.KeyPressed += new EventHandler<KeyEventArgs>(OnKeypressed);
+        _window.KeyReleased += new EventHandler<KeyEventArgs>(OnKeyrelease);
         UpdateEvent += new UpdateEventHandler(Update); // Add Game's Update function to our Update event (this is an event to tie to Time class)
 
         // Create Time!!
@@ -74,6 +76,14 @@ public class Game
     {
     }
 
+    void OnKeypressed(object sender, KeyEventArgs e)
+    {
+        Input.keyPressed(e.Code);
+    }
+    void OnKeyrelease(object sender, KeyEventArgs e)
+    {
+        Input.keyReleased(e.Code);
+    }
 
     //! Update is an event so it can be passed to time to link framerates
     public delegate void UpdateEventHandler();
