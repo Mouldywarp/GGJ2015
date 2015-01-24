@@ -30,9 +30,9 @@ class PlanetManager
     }
 
 
-    public void Update(List<Bullet> bullets)
+    public void Update()
     {
-        foreach (Planet planet in _planets) planet.Update(bullets);
+        foreach (Planet planet in _planets) planet.Update();
     }
 
     public void DrawPlanets(RenderWindow window)

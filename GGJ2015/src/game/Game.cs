@@ -110,11 +110,12 @@ public class Game
     void Update()
     {
         // All update code here!
-	//_planetManager.Update();
+	_planetManager.Update();
+
         _bulletManager.Update();
 
         // Collision Updates
-        _collisionManager.Update(_bulletManager.bullets, _planetManager.planets, player);
+        _collisionManager.Update(_bulletManager.playerBullets, _bulletManager.enemyBullets, _planetManager.planets, player);
 
         
 

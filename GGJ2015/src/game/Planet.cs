@@ -15,7 +15,6 @@ class Planet : Drawable
     float _angularVelocity;
     float _mass;
     float _gravitationFieldRadius;
-    const float PI = 3.1412f;
 
     public Vector2f position { get { return _position; } set { _position = value; } }
     public Vector2f velocity { set { _velocity = value; } }
@@ -36,24 +35,12 @@ class Planet : Drawable
         target.Draw(_sprite);
     }
 
-    public void Update(List<Bullet> bullets)
+    public void Update()
     {
         position += _velocity * Time.deltaTime;
         rotation += _angularVelocity * Time.deltaTime;
 
         _sprite.Position = position;
         _sprite.Rotation = rotation;
-
-        foreach(Bullet bullet in bullets)
-        {
-            if(CircleMath.Intersects(this.position, this.gravitationalFieldRadius, bullet.position, bullet.radius))
-            {
-                // Calculate Gravity Formula
-                float density = mass / (PI * radius * radius);
-                float GravEffect = density / (CircleMath.GetSquaredDistanceBetween(this.position, bullet.position));
-
-                bullet.velocity *= GravEffect;
-            }
-        }
     }
 }
