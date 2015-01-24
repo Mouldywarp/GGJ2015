@@ -37,3 +37,15 @@ H:\Computer Games Programming\GlobalGamesJam2015\GGJ2015\GGJ2015\bin\Debug\sfmln
 H:\Computer Games Programming\GlobalGamesJam2015\GGJ2015\GGJ2015\bin\Debug\sfmlnet-graphics-2.dll
 H:\Computer Games Programming\GlobalGamesJam2015\GGJ2015\GGJ2015\bin\Debug\sfmlnet-window-2.dll
 H:\Computer Games Programming\GlobalGamesJam2015\GGJ2015\GGJ2015\obj\Debug\GGJ2015.csprojResolveAssemblyReference.cache
+H:\Documents\GitHub\GGJ2015\GGJ2015\bin\Debug\WarGame.exe.config
+H:\Documents\GitHub\GGJ2015\GGJ2015\obj\Debug\WarGame.exe
+H:\Documents\GitHub\GGJ2015\GGJ2015\obj\Debug\WarGame.pdb
+H:\Documents\GitHub\GGJ2015\GGJ2015\obj\Debug\GGJ2015.csprojResolveAssemblyReference.cache
+H:\Documents\GitHub\GGJ2015\GGJ2015\bin\Debug\csfml-audio-2.dll
+H:\Documents\GitHub\GGJ2015\GGJ2015\bin\Debug\csfml-graphics-2.dll
+H:\Documents\GitHub\GGJ2015\GGJ2015\bin\Debug\csfml-window-2.dll
+H:\Documents\GitHub\GGJ2015\GGJ2015\bin\Debug\WarGame.exe
+H:\Documents\GitHub\GGJ2015\GGJ2015\bin\Debug\WarGame.pdb
+H:\Documents\GitHub\GGJ2015\GGJ2015\bin\Debug\sfmlnet-audio-2.dll
+H:\Documents\GitHub\GGJ2015\GGJ2015\bin\Debug\sfmlnet-graphics-2.dll
+H:\Documents\GitHub\GGJ2015\GGJ2015\bin\Debug\sfmlnet-window-2.dll

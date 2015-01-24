@@ -47,10 +47,12 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\game\Animation.cs" />
     <Compile Include="src\game\Assets.cs" />
     <Compile Include="src\game\Bullet.cs" />
     <Compile Include="src\game\BulletManager.cs" />
     <Compile Include="src\game\Game.cs" />
+    <Compile Include="src\game\TileMath.cs" />
     <Compile Include="src\game\Time.cs" />
     <Compile Include="src\Main.cs">
       <SubType>Code</SubType>
