@@ -27,11 +27,13 @@ public class Game
     CircleShape player = new CircleShape(16);
 
     Player JohnBervege;
+    Enemy _enemy;
 
 
     public Game()
     {
         JohnBervege = new Player(new Vector2f(100, RES_HEIGHT / 2), _bulletManager);
+        _enemy = new Enemy(new Vector2f(RES_WIDTH * 0.5f, RES_HEIGHT * 0.5f), _bulletManager);
     }
 
     public void RunGame()
@@ -152,7 +154,7 @@ public class Game
         _bulletManager.DrawBullets(_window);
         _planetManager.DrawPlanets(_window);
         _window.Draw(JohnBervege);
-        JohnBervege.update();
+        _window.Draw(_enemy);
     }
 
 }
