@@ -77,6 +77,9 @@ build/
 *.pidb
 *.log
 *.scc
+bin/
+Debug/
+*.exe
 
 # Visual C++ cache files
 ipch/
@@ -85,11 +88,17 @@ ipch/
 *.opensdf
 *.sdf
 *.cachefile
+bin/
+Debug/
+*.exe
 
 # Visual Studio profiler
 *.psess
 *.vsp
 *.vspx
+bin/
+Debug/
+*.exe
 
 # Guidance Automation Toolkit
 *.gpState
