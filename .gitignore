@@ -214,3 +214,6 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+*.exe
+*.exe
+GGJ2015/bin/Debug/WarGame.exe

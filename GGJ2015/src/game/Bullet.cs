@@ -10,9 +10,14 @@ class Bullet : Drawable
 {
     Animation _animation;
     Vector2f _velocity;
+    bool _alive = false;
+    float _radius;
 
     public Vector2f position { get { return _animation.position; } set { _animation.position = value; } }
     public Vector2f velocity { set { _velocity = value; } }
+    public bool alive { set { _alive = value; } }
+    public float radius { get { return _radius; } }
+
 
     public Bullet()
     {
@@ -23,15 +28,18 @@ class Bullet : Drawable
         _animation.speed = (1.0f / 16);
         _animation.Play();
 
+        _radius = 8; // one would assume, if tile is 16X16
     }
 
     public void Draw(RenderTarget target, RenderStates states)
     {
-        _animation.Draw(target, states); 
+        if (!_alive) return;
+        _animation.Draw(target, states);
     }
 
     public void Update()
     {
+        if (!_alive) return;
         position += _velocity * Time.deltaTime;
     }
 }

@@ -26,7 +26,7 @@ class BulletManager
 
     public void Update()
     {
-        foreach (Bullet bullet in _bullets) bullet.Update();
+        //foreach (Bullet bullet in _bullets) bullet.Update();
     }
 
     public void DrawBullets(RenderWindow window)

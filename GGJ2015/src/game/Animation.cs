@@ -33,7 +33,14 @@ class Animation : Drawable
     public float speed { set { _animDelay = value; } }
     public Vector2f position { set { _sprite.Position = value; } get { return _sprite.Position; } }
     public Color tint { set { _sprite.Color = value; } }
-    public Vector2i tileSize { set { _tileSize = value; } }
+    public Vector2i tileSize
+    {
+        set
+        { 
+            _tileSize = value;
+            _sprite.Origin = new Vector2f((float)value.X * 0.5f, (float)value.Y * 0.5f);
+        }
+    }
 
     public Animation(Texture spriteSheet, int tilesInRow)
     {
