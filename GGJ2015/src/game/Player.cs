@@ -28,8 +28,7 @@ class Player : Drawable
     {
         _johnBervege = new Sprite(Assets.GetTexture("../../images/ship.png"));
         _johnBervege.Position = Position;
-        _johnBervege.Origin = new Vector2f(8,8);
-        _johnBervege.Rotation += 90;
+        _johnBervege.Origin = new Vector2f(32,16);
         _radius = 16;
         _cuntingtonSmithe = bmIns;
     }
