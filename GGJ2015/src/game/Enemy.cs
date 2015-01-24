@@ -20,7 +20,7 @@ class Enemy : Drawable
     Random random = new Random();
     public Enemy(Vector2f pos, BulletManager bulletManager)
     {
-        _sprite = new Sprite(Assets.GetTexture("../../images/ship.png"));
+        _sprite = new Sprite(Assets.GetTexture("../../images/enemy.png"));
         _sprite.Position = pos;
         _sprite.Origin = new Vector2f(32, 16);
         _radius = 16;
