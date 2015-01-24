@@ -24,6 +24,7 @@ class BulletManager
         }
     }
 
+
     public void CreateBullet(Bullet.Shooter whoShotme, Vector2f position, Vector2f velocity)
     {
         if (_inactiveBullets.Count == 0) return;
