@@ -27,9 +27,21 @@ class Planet : Drawable
     public float mass { get { return _mass; } set { _mass = value; } }
     public float gravitationalFieldRadius { get { return _gravitationFieldRadius; } set { _gravitationFieldRadius = value; } }
 
-    public Planet()
+    public Planet(Random rand)
+    {
+        reset(rand);
+    }
+
+    public void reset(Random random)
     {
         rotation = 0;
+        position = new Vector2f(random.Next(Game.RES_WIDTH), random.Next(Game.RES_HEIGHT));
+        velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
+        sprite.FillColor = Color.Red;
+        sprite.Radius = random.Next(48) + 16;
+        sprite.Origin = new Vector2f(radius, radius);
+        angularVelocity = random.Next(10) + 10;
+        gravitationalFieldRadius = radius + 8;
     }
 
     public void Draw(RenderTarget target, RenderStates states)
