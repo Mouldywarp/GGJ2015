@@ -8,7 +8,7 @@ using SFML.Window;
 
 class Player
 {
-
+    //Sprite
 
 
 }
