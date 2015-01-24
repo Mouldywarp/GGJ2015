@@ -31,6 +31,6 @@ class Bullet : Drawable
 
     public void Update()
     {
-        position += _velocity;
+        position += _velocity * Time.deltaTime;
     }
 }
