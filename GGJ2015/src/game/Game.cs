@@ -22,22 +22,33 @@ public class Game
     // Game Objects
     BulletManager _bulletManager = new BulletManager();
     PlanetManager _planetManager = new PlanetManager();
+    CollisionManager _collisionManager = new CollisionManager();
+
+    CircleShape player = new CircleShape(16);
+
+    Player JohnBervege;
 
     public Game()
     {
+        JohnBervege = new Player(new Vector2f(100, RES_HEIGHT / 2), _bulletManager);
     }
 
     public void RunGame()
     {
         _window = new RenderWindow(new VideoMode(RES_WIDTH, RES_HEIGHT), "What do we do now?64");
         _window.SetVisible(true);
-
+  
         // Event handlers - Add other events such as input in same way!!
         _window.Closed += new EventHandler(OnClosed); // Exactly same as Closed += OnClosed. Slightly different syntax but seems to work exactly the same
         _window.Resized += new EventHandler<SizeEventArgs>(OnResize); // Resize event handler
         _window.KeyPressed += new EventHandler<KeyEventArgs>(OnKeypressed);
         _window.KeyReleased += new EventHandler<KeyEventArgs>(OnKeyrelease);
         UpdateEvent += new UpdateEventHandler(Update); // Add Game's Update function to our Update event (this is an event to tie to Time class)
+
+        // Player
+        player.Position = new Vector2f(RES_WIDTH * 0.2f, RES_HEIGHT * 0.5f);
+        player.Origin = new Vector2f(16, 16);
+        player.FillColor = Color.Green;
 
         // Create Time!!
         Time.CreateTime(this);
@@ -51,7 +62,8 @@ public class Game
             _window.Clear(Color.Blue);
             
             UpdateEvent(); // call update event
-            
+            if(Input.getKey(Keyboard.Key.Escape)==true)
+            _window.Close();
             // Fixed frame update
             _fixedFrameTimer += Time.deltaTime;
             if (_fixedFrameTimer >= _frameDelay)
@@ -62,6 +74,7 @@ public class Game
             
             Draw();
             _window.Display();
+
         }
     }
 
@@ -89,17 +102,21 @@ public class Game
     public delegate void UpdateEventHandler();
     public event UpdateEventHandler UpdateEvent;
 
-
-
     void Initialize()
     {
+        
     }
     
     void Update()
     {
         // All update code here!
-        _planetManager.Update();
+	_planetManager.Update();
         _bulletManager.Update();
+
+        // Collision Updates
+        _collisionManager.Update(_bulletManager.playerBullets, _bulletManager.enemyBullets, _planetManager.planets, player);
+
+        
 
         if (Input.getKey(Keyboard.Key.P))
         {
@@ -115,14 +132,16 @@ public class Game
             Vector2f velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
             _bulletManager.CreateBullet(Bullet.Shooter.ENEMY, position, velocity);
         }
+
     }
 
     void FixedUpdate()
     {
         // All fixed frame rate Update code here!
-        //Vector2f position = new Vector2f(random.Next(Game.RES_WIDTH), random.Next(Game.RES_HEIGHT));
-        //Vector2f velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
-        //_bulletManager.CreateBullet(position, velocity);
+        Vector2f position = new Vector2f(random.Next(Game.RES_WIDTH), random.Next(Game.RES_HEIGHT));
+        Vector2f velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
+        _bulletManager.CreateBullet(Bullet.Shooter.ENEMY, position, velocity);
+        JohnBervege.update();
     }
 
     void Draw()
@@ -130,6 +149,7 @@ public class Game
         // All draw code here!
         _bulletManager.DrawBullets(_window);
         _planetManager.DrawPlanets(_window);
+        _window.Draw(JohnBervege);
     }
 
 }

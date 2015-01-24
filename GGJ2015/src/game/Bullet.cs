@@ -15,7 +15,7 @@ class Bullet : Drawable
     float _radius;
 
     public Vector2f position { get { return _animation.position; } set { _animation.position = value; } }
-    public Vector2f velocity { set { _velocity = value; } }
+    public Vector2f velocity { set { _velocity = value; } get { return _velocity; } }
     public float radius { get { return _radius; } }
     public bool isActive { get { return _alive; } }
     public void SetActive(bool active) { _alive = active; }
@@ -43,16 +43,8 @@ class Bullet : Drawable
         _animation.Draw(target, states);
     }
 
-    public void Update(Planet[] planets)
+    public void Update()
     {
         position += _velocity * Time.deltaTime;
-        foreach(Planet planet in planets)
-        {
-            if (CircleMath.Intersects(this.position, this.radius, planet.position, planet.radius))
-            {
-                _alive = false;
-                break;
-            }
-        }
     }
 }

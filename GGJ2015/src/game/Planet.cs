@@ -13,6 +13,8 @@ class Planet : Drawable
     float _radius;
     float _rotation;
     float _angularVelocity;
+    float _mass;
+    float _gravitationFieldRadius;
 
     public Vector2f position { get { return _position; } set { _position = value; } }
     public Vector2f velocity { set { _velocity = value; } }
@@ -20,6 +22,8 @@ class Planet : Drawable
     public float radius { get { return _sprite.Radius; } set { sprite.Radius = value; } }
     public CircleShape sprite { get { return _sprite; } }
     public float angularVelocity { get { return _angularVelocity; } set { _angularVelocity = value; } }
+    public float mass { get { return _mass; } set { _mass = value; } }
+    public float gravitationalFieldRadius { get { return _gravitationFieldRadius; } set { _gravitationFieldRadius = value; } }
 
     public Planet()
     {

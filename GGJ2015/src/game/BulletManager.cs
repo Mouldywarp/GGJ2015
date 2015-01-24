@@ -12,6 +12,9 @@ class BulletManager
     List<Bullet> _playerBullets = new List<Bullet>();
     List<Bullet> _enemyBullets = new List<Bullet>();
 
+    public List<Bullet> playerBullets { get { return _playerBullets; } }
+    public List<Bullet> enemyBullets { get { return _enemyBullets; } }
+
     public BulletManager()
     {
         for (int i = 0; i < 10000; ++i)
@@ -20,8 +23,6 @@ class BulletManager
             _inactiveBullets.Push(bullet);
         }
     }
-
-
 
 
     public void CreateBullet(Bullet.Shooter whoShotme, Vector2f position, Vector2f velocity)
@@ -40,39 +41,37 @@ class BulletManager
         }
     }
 
-
     public void Update()
     {
+        // Enemy
         for (int i = _enemyBullets.Count - 1; i >= 0; i--)
         {
-            if (!_enemyBullets[i].isActive)
-            {
-                _inactiveBullets.Push(_enemyBullets[i]);
-                _enemyBullets.RemoveAt(i);
-            }
-        }
-    }
+            _enemyBullets[i].Update();
 
-    /*
-    public void Update(Planet[] planets)
-    {
-        for (int i = _enemyBullets.Count - 1; i >= 0; i--)
-        {
-            _enemyBullets[i].Update(planets);
             if (!_enemyBullets[i].isActive)
             {
                 _inactiveBullets.Push(_enemyBullets[i]);
                 _enemyBullets.RemoveAt(i);
             }
         }
+
+        // Player
+        for (int i = _playerBullets.Count - 1; i >= 0; i--)
+        {
+            _playerBullets[i].Update();
+
+            if (!_playerBullets[i].isActive)
+            {
+                _inactiveBullets.Push(_playerBullets[i]);
+                _playerBullets.RemoveAt(i);
+            }
+        }
     }
-     * */
 
     public void DrawBullets(RenderWindow window)
     {
         foreach (Bullet bullet in _enemyBullets) window.Draw(bullet);
         foreach (Bullet bullet in _playerBullets) window.Draw(bullet);
     }
-
 }
 
