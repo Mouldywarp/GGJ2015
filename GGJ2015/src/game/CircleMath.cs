@@ -13,13 +13,13 @@ class CircleMath
     {
         // Distance Lengths
         Vector2f distanceBetween = p2 - p1;
-        distanceBetween.X *= distanceBetween.X;
-        distanceBetween.Y *= distanceBetween.Y;
-        float dist = distanceBetween.X + distanceBetween.Y;
+        distanceBetween.X *= distanceBetween.X;                 // x^2
+        distanceBetween.Y *= distanceBetween.Y;                 // y^2
+        float dist = distanceBetween.X + distanceBetween.Y;     // dist = c^2
 
         // Radius Lengths
         float rad = rad1 + rad2;
-        rad *= rad;
+        rad *= rad;                                             // compare rad^2 to c^2
 
         return dist < rad;
     }

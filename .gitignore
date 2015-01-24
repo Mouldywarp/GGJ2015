@@ -219,3 +219,7 @@ pip-log.txt
 GGJ2015/bin/Debug/WarGame.exe
 *.exe
 GGJ2015/bin/Debug/WarGame.exe
+*.exe
+*.pdb
+*.exe
+*.pdb
