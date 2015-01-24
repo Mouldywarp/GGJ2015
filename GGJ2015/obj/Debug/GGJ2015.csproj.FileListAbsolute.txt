@@ -49,3 +49,15 @@ H:\Documents\GitHub\GGJ2015\GGJ2015\bin\Debug\sfmlnet-audio-2.dll
 H:\Documents\GitHub\GGJ2015\GGJ2015\bin\Debug\sfmlnet-graphics-2.dll
 H:\Documents\GitHub\GGJ2015\GGJ2015\bin\Debug\sfmlnet-window-2.dll
 H:\Documents\GitHub\GGJ2015\GGJ2015\obj\Debug\GGJ2015.csprojResolveAssemblyReference.cache
+C:\Users\Sam\Documents\GitHub\Game Jam\GGJ2015\GGJ2015\bin\Debug\WarGame.exe.config
+C:\Users\Sam\Documents\GitHub\Game Jam\GGJ2015\GGJ2015\obj\Debug\WarGame.exe
+C:\Users\Sam\Documents\GitHub\Game Jam\GGJ2015\GGJ2015\obj\Debug\WarGame.pdb
+C:\Users\Sam\Documents\GitHub\Game Jam\GGJ2015\GGJ2015\bin\Debug\csfml-audio-2.dll
+C:\Users\Sam\Documents\GitHub\Game Jam\GGJ2015\GGJ2015\bin\Debug\csfml-graphics-2.dll
+C:\Users\Sam\Documents\GitHub\Game Jam\GGJ2015\GGJ2015\bin\Debug\csfml-window-2.dll
+C:\Users\Sam\Documents\GitHub\Game Jam\GGJ2015\GGJ2015\bin\Debug\WarGame.exe
+C:\Users\Sam\Documents\GitHub\Game Jam\GGJ2015\GGJ2015\bin\Debug\WarGame.pdb
+C:\Users\Sam\Documents\GitHub\Game Jam\GGJ2015\GGJ2015\bin\Debug\sfmlnet-audio-2.dll
+C:\Users\Sam\Documents\GitHub\Game Jam\GGJ2015\GGJ2015\bin\Debug\sfmlnet-graphics-2.dll
+C:\Users\Sam\Documents\GitHub\Game Jam\GGJ2015\GGJ2015\bin\Debug\sfmlnet-window-2.dll
+C:\Users\Sam\Documents\GitHub\Game Jam\GGJ2015\GGJ2015\obj\Debug\GGJ2015.csprojResolveAssemblyReference.cache

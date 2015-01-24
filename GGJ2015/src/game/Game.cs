@@ -30,11 +30,43 @@ public class Game
     Background _background = new Background(RES_WIDTH, RES_HEIGHT);
 
 
+    // Menu Text
+
+    Text title;
+    Text pressGToPlay;
+    Font font;
+
+
+
+ 
+
+    // Create an enum of states for switching between menus and levels
+    public enum GameStates {
+        mainMenu, playingLevel, pause
+    };
+
+    GameStates value = GameStates.mainMenu;
+
+
 
     public Game()
     {
         _enemySpuffer = new EnemySpuffer(_bulletManager);
         _player = new Player(new Vector2f(100, RES_HEIGHT / 2), _bulletManager);
+
+
+        // Setup Main Menu Text
+
+        font = new Font("../../fonts/arial.ttf");
+
+        title = new Text("Title Goes Here", font);
+        title.Position = new Vector2f(20, 20);
+        title.CharacterSize = 24;
+
+        pressGToPlay = new Text("press G to play", font);
+        pressGToPlay.Position = new Vector2f(20, 50);
+        pressGToPlay.CharacterSize = 24;
+
     }
 
     public void RunGame()
@@ -71,10 +103,21 @@ public class Game
               
                 _fixedFrameTimer = 0;
             }
-            
-            Draw();
-            _window.Display();
 
+            if (value == GameStates.mainMenu)
+            {
+                _background.Draw(_window);
+                _window.Draw(title);
+                _window.Draw(pressGToPlay);
+                
+            }
+
+            if (value == GameStates.playingLevel)
+            {
+                Draw();
+            }
+
+            _window.Display();
         }
     }
 
@@ -118,7 +161,24 @@ public class Game
         
        
         // Collision Updates
-        _collisionManager.Update();        
+        _collisionManager.Update();
+
+        if (Input.getKey(Keyboard.Key.G) == true)
+        {
+            if (!(value == GameStates.playingLevel))
+            {
+                // Reset function needed here
+                value = GameStates.playingLevel;
+            }
+        }
+
+        if (Input.getKey(Keyboard.Key.H) == true)
+        {
+            if (!(value == GameStates.mainMenu))
+            {
+                value = GameStates.mainMenu;
+            }
+        }
 
         if (Input.getKey(Keyboard.Key.P))
         {
@@ -153,7 +213,7 @@ public class Game
         _planetManager.DrawPlanets(_window);
         _window.Draw(_player);
         _enemySpuffer.DrawEnemies(_window);
-
+        
     }
 
 }

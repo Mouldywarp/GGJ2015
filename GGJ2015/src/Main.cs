@@ -13,6 +13,7 @@ namespace GGJ2015
         {
             Game game = new Game();
             game.RunGame();
+            
         }
     }
 }
