@@ -27,6 +27,8 @@ class BulletManager
     public void Update(Planet[] planets)
     {
         foreach (Bullet bullet in _bullets) bullet.Update(planets);
+	foreach (Bullet bullet in _bullets) bullet.Update();
+
     }
 
     public void DrawBullets(RenderWindow window)
