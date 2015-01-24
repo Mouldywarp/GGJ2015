@@ -20,7 +20,8 @@ public class Game
 
     // Game Objects
     BulletManager _bulletManager = new BulletManager();
-
+    PlanetManager _planetManager = new PlanetManager();
+   
     public Game()
     {
     }
@@ -79,7 +80,10 @@ public class Game
     void Update()
     {
         // All update code here!
-        _bulletManager.Update();
+        _planetManager.Update();
+        _bulletManager.Update(_planetManager.planets);
+
+        // Update Player
     }
 
     void FixedUpdate()
@@ -91,6 +95,7 @@ public class Game
     {
         // All draw code here!
         _bulletManager.DrawBullets(_window);
+        _planetManager.DrawPlanets(_window);
     }
 
 }

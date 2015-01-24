@@ -9,9 +9,12 @@ class Bullet : Drawable
 {
     Animation _animation;
     Vector2f _velocity;
+    float _radius;
+    bool _destroyed;
 
     public Vector2f position { get { return _animation.position; } set { _animation.position = value; } }
     public Vector2f velocity { set { _velocity = value; } }
+    public float radius { get { return _radius; } set { _radius = value; } }
 
     public Bullet()
     {
@@ -26,11 +29,19 @@ class Bullet : Drawable
 
     public void Draw(RenderTarget target, RenderStates states)
     {
-        _animation.Draw(target, states); 
+        if(!_destroyed) _animation.Draw(target, states); 
     }
 
-    public void Update()
+    public void Update(Planet[] planets)
     {
         position += _velocity * Time.deltaTime;
+
+        // Collision Check
+        foreach (Planet planet in planets)
+        {
+            if (CircleMath.Intersects(this.position, this._radius, planet.position, planet.radius)) _destroyed = true;
+        }
+
+        // Screen View
     }
 }
