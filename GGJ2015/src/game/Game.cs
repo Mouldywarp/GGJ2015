@@ -112,7 +112,7 @@ public class Game
         // All update code here!
 	    _planetManager.Update();
         _bulletManager.Update();
-
+        JohnBervege.update();
         // Collision Updates
         _collisionManager.Update(_bulletManager.playerBullets, _bulletManager.enemyBullets, _planetManager.planets, player);
 
@@ -143,6 +143,8 @@ public class Game
         //Vector2f velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
         //_bulletManager.CreateBullet(Bullet.Shooter.ENEMY, position, velocity);
         //JohnBervege.update();
+
+
     }
 
     void Draw()
