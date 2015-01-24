@@ -8,11 +8,9 @@ using SFML.Window;
 
 class Player : Drawable
 {
-
     const float SPEED = 500;
     const float BULLETSPEED = 500;
     const float RATEOFFIRE = 0.075f;
-
 
     static float _timer;
 
@@ -45,8 +43,20 @@ class Player : Drawable
         {
             _johnBervege.Position += new Vector2f(0, Time.deltaTime * SPEED);
         }
+        if (Input.getKey(Keyboard.Key.D) == true || Input.getKey(Keyboard.Key.Left))
+        {
+            _johnBervege.Position += new Vector2f(Time.deltaTime * SPEED, 0);
+        }
+        if (Input.getKey(Keyboard.Key.A) == true || Input.getKey(Keyboard.Key.Right))
+        {
+            _johnBervege.Position += new Vector2f(-Time.deltaTime * SPEED, 0);
+        }
     }
-   
+    private void move()
+    {
+
+
+    }
     private void FireBullet()
     {
         if (_timer > RATEOFFIRE)
