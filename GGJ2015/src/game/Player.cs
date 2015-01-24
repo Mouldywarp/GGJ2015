@@ -64,6 +64,7 @@ class Player : Drawable
             }
         }
     }
+
     private void Move()
     {
         if (_creep == true)
