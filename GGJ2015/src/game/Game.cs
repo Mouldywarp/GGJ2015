@@ -95,9 +95,9 @@ public class Game
     void FixedUpdate()
     {
         // All fixed frame rate Update code here!
-        Vector2f position = new Vector2f(random.Next(Game.RES_WIDTH), random.Next(Game.RES_HEIGHT));
-        Vector2f velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
-        _bulletManager.CreateBullet(position, velocity);
+        //Vector2f position = new Vector2f(random.Next(Game.RES_WIDTH), random.Next(Game.RES_HEIGHT));
+        //Vector2f velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
+        //_bulletManager.CreateBullet(position, velocity);
     }
 
     void Draw()
