@@ -59,19 +59,19 @@ class Player : Drawable
 
         if (Input.getKey(Keyboard.Key.W) == true || Input.getKey(Keyboard.Key.Up))
         {
-           _velocity.Y = -SPEED;
+            if(_sprite.Position.Y -90 > 0) _velocity.Y = -SPEED;
         }
         if (Input.getKey(Keyboard.Key.S) == true || Input.getKey(Keyboard.Key.Down))
         {
-           _velocity.Y = SPEED;
+           if(_sprite.Position.Y +90 < Game.RES_HEIGHT) _velocity.Y = SPEED;
         }
         if (Input.getKey(Keyboard.Key.D) == true || Input.getKey(Keyboard.Key.Right))
         {
-            _velocity.X = SPEED;
+           if(_sprite.Position.X +90 < Game.RES_WIDTH) _velocity.X = SPEED;
         }
         if (Input.getKey(Keyboard.Key.A) == true || Input.getKey(Keyboard.Key.Left))
         {
-            _velocity.X = -SPEED;
+           if(_sprite.Position.X - 90 > 0) _velocity.X = -SPEED;
         }
         if (Input.getKey(Keyboard.Key.LShift) == true)
         {
