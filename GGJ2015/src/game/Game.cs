@@ -49,11 +49,6 @@ public class Game
         _window.KeyReleased += new EventHandler<KeyEventArgs>(OnKeyrelease);
         UpdateEvent += new UpdateEventHandler(Update); // Add Game's Update function to our Update event (this is an event to tie to Time class)
 
-        // Player
-        player.Position = new Vector2f(RES_WIDTH * 0.2f, RES_HEIGHT * 0.5f);
-        player.Origin = new Vector2f(16, 16);
-        player.FillColor = Color.Green;
-
         // Create Time!!
         Time.CreateTime(this);
 
@@ -118,11 +113,11 @@ public class Game
 	    _planetManager.Update();
         _bulletManager.Update();
         _background.update();
-        JohnBervege.update();
+        _player.update();
         
        
         // Collision Updates
-        _collisionManager.Update(_bulletManager.playerBullets, _bulletManager.enemyBullets, _planetManager.planets, player);        
+        _collisionManager.Update();        
 
         if (Input.getKey(Keyboard.Key.P))
         {

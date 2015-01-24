@@ -41,10 +41,10 @@ class CircleMath
         return density / (CircleMath.GetSquaredDistanceBetween(planet.position, objPosition));      // Grav Effect
     }
 
-    public static bool OffScreen(Vector2f position)
+    public static bool OffScreen(FloatRect bounds)
     {
-        if(position.X > Game.RES_WIDTH || position.X < 0) return true;
-        if(position.Y > Game.RES_HEIGHT || position.Y < 0) return true;
+        if (bounds.Left + bounds.Width > Game.RES_WIDTH || bounds.Left < 0) return true;
+        if (bounds.Top + bounds.Height > Game.RES_WIDTH || bounds.Top < 0) return true;
         return false;
     }
 }

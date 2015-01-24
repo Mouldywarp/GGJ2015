@@ -42,10 +42,11 @@ class CollisionManager
 
         foreach (Planet planet in _planets)
         {
-            // Check if current planet is off screen
-            if (CircleMath.OffScreen(planet.position))
+
+            //Check if offscreen
+            if (CircleMath.OffScreen(planet.bounds))
             {
-                // Delete Planet Stuff
+                // Delete Stuff
                 continue;
             }
 
@@ -92,10 +93,12 @@ class CollisionManager
         // Player Bullets
         foreach (Bullet bullet in _playerBullets)
         {
-            // Check if current bullet is off screen
-            if (CircleMath.OffScreen(bullet.position))
+
+            //Check if offscreen
+            if (CircleMath.OffScreen(bullet.bounds))
             {
-                // Delete bullet Stuff
+                // Delete Stuff
+                bullet.SetActive(false);
                 continue;
             }
 
@@ -126,10 +129,12 @@ class CollisionManager
         // Enemy Bullets
         foreach (Bullet bullet in _enemyBullets)
         {
-            // Check if current bullet is off screen
-            if (CircleMath.OffScreen(bullet.position))
+
+            //Check if offscreen
+            if (CircleMath.OffScreen(bullet.bounds))
             {
-                // Delete bullet Stuff
+                // Delete Stuff
+                bullet.SetActive(false);
                 continue;
             }
 

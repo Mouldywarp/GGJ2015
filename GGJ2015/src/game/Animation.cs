@@ -23,6 +23,7 @@ class Animation : Drawable
     private int _currentClip = -1;
 
     // Clips
+    public FloatRect bounds { get { return _sprite.GetGlobalBounds(); } }
     private Sprite _sprite;
     private int _tilesInRow;
     private Vector2i _tileSize = new Vector2i(32, 32); // default = 32 X 32 pixels per tile
