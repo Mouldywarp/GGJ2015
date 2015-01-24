@@ -22,16 +22,15 @@ public class Game
     // Game Objects
     BulletManager _bulletManager = new BulletManager();
     PlanetManager _planetManager = new PlanetManager();
+    EnemySpuffer _enemySpuffer;
     CollisionManager _collisionManager;
 
     Player _player;
-    List<Enemy> _enemies;
 
 
     public Game()
     {
-        _enemies = new List<Enemy>();
-        _enemies.Add(new Enemy(new Vector2f(RES_WIDTH * 0.5f, RES_HEIGHT * 0.5f), _bulletManager));
+        _enemySpuffer = new EnemySpuffer(_bulletManager);
         _player = new Player(new Vector2f(100, RES_HEIGHT / 2), _bulletManager);
     }
 
@@ -101,7 +100,8 @@ public class Game
 
     void Initialize()
     {
-        _collisionManager = new CollisionManager(_bulletManager.playerBullets, _bulletManager.enemyBullets, _enemies, _planetManager.planets, _player);
+        _collisionManager = new CollisionManager(_bulletManager.playerBullets, _bulletManager.enemyBullets, _enemySpuffer.enemies, _planetManager.planets, _player);
+        _enemySpuffer.CreateEnemy(new Vector2f(RES_WIDTH * 0.5f, RES_HEIGHT * 0.5f), new Vector2f());
     }
     
     void Update()
@@ -148,7 +148,7 @@ public class Game
         _bulletManager.DrawBullets(_window);
         _planetManager.DrawPlanets(_window);
         _window.Draw(_player);
-        foreach (Enemy enemy in _enemies) _window.Draw(enemy);
+        _enemySpuffer.DrawEnemies(_window);
     }
 
 }
