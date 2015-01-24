@@ -111,7 +111,6 @@ public class Game
     {
         // All update code here!
 	_planetManager.Update();
-
         _bulletManager.Update();
 
         // Collision Updates
