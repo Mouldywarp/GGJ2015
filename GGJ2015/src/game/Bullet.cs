@@ -5,7 +5,6 @@ using SFML;
 using SFML.Graphics;
 using SFML.Window;
 
-
 class Bullet : Drawable
 {
     Animation _animation;
