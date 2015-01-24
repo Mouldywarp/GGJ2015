@@ -47,16 +47,24 @@ class BulletManager
         for (int i = _enemyBullets.Count - 1; i >= 0; i--)
         {
             _enemyBullets[i].Update();
-            _inactiveBullets.Push(_enemyBullets[i]);
-            _enemyBullets.RemoveAt(i);
+
+            if (!_enemyBullets[i].isActive)
+            {
+                _inactiveBullets.Push(_enemyBullets[i]);
+                _enemyBullets.RemoveAt(i);
+            }
         }
 
         // Player
         for (int i = _playerBullets.Count - 1; i >= 0; i--)
         {
             _playerBullets[i].Update();
-            _inactiveBullets.Push(_playerBullets[i]);
-            _playerBullets.RemoveAt(i);
+
+            if (!_playerBullets[i].isActive)
+            {
+                _inactiveBullets.Push(_playerBullets[i]);
+                _playerBullets.RemoveAt(i);
+            }
         }
     }
 

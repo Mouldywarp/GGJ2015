@@ -8,17 +8,10 @@ using SFML.Window;
 
 class Player : Drawable
 {
+ 
     const float SPEED = 500;
     const float BULLETSPEED = 500;
     const float RATEOFFIRE = 0.075f;
-    //Sprite
-    Sprite _sprite;
-
-
-    public Player()
-    {
-        //_sprite = new Sprite(Assets.GetTexture("
-    }
 
     static float _timer;
 
@@ -43,11 +36,11 @@ class Player : Drawable
 
     private void handleInput()
     {
-        if (Input.getKey(Keyboard.Key.W) == true)
+        if (Input.getKey(Keyboard.Key.W) == true || Input.getKey(Keyboard.Key.Up))
         {
             _johnBervege.Position += new Vector2f(0, -Time.deltaTime*SPEED);
         }
-        if (Input.getKey(Keyboard.Key.S) == true)
+        if (Input.getKey(Keyboard.Key.S) == true || Input.getKey(Keyboard.Key.Down))
         {
             _johnBervege.Position += new Vector2f(0, Time.deltaTime * SPEED);
         }
@@ -58,7 +51,7 @@ class Player : Drawable
         if (_timer > RATEOFFIRE)
         {
             _timer = 0;
-           // _cuntingtonSmithe.CreateBullet(_johnBervege.Position, new Vector2f(BULLETSPEED, 0));
+            _cuntingtonSmithe.CreateBullet(Bullet.Shooter.PLAYER, _johnBervege.Position, new Vector2f(BULLETSPEED, 0));
         }
     }
 

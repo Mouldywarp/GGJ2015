@@ -110,7 +110,7 @@ public class Game
     void Update()
     {
         // All update code here!
-	    _planetManager.Update();
+	_planetManager.Update();
         _bulletManager.Update();
 
         // Collision Updates
@@ -138,9 +138,9 @@ public class Game
     void FixedUpdate()
     {
         // All fixed frame rate Update code here!
-       // Vector2f position = new Vector2f(random.Next(Game.RES_WIDTH), random.Next(Game.RES_HEIGHT));
-        //Vector2f velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
-        //_bulletManager.CreateBullet(position, velocity);
+        Vector2f position = new Vector2f(random.Next(Game.RES_WIDTH), random.Next(Game.RES_HEIGHT));
+        Vector2f velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
+        _bulletManager.CreateBullet(Bullet.Shooter.ENEMY, position, velocity);
         JohnBervege.update();
     }
 
@@ -149,7 +149,7 @@ public class Game
         // All draw code here!
         _bulletManager.DrawBullets(_window);
         _planetManager.DrawPlanets(_window);
-        _window.Draw(player);
+        _window.Draw(JohnBervege);
     }
 
 }
