@@ -22,16 +22,17 @@ public class Game
     // Game Objects
     BulletManager _bulletManager = new BulletManager();
     PlanetManager _planetManager = new PlanetManager();
-    CollisionManager _collisionManager = new CollisionManager();
+    CollisionManager _collisionManager;
 
-    Player player;
-    Enemy _enemy;
+    Player _player;
+    List<Enemy> _enemies;
 
 
     public Game()
     {
-        player = new Player(new Vector2f(100, RES_HEIGHT / 2), _bulletManager);
-        _enemy = new Enemy(new Vector2f(RES_WIDTH * 0.5f, RES_HEIGHT * 0.5f), _bulletManager);
+        _enemies = new List<Enemy>();
+        _enemies.Add(new Enemy(new Vector2f(RES_WIDTH * 0.5f, RES_HEIGHT * 0.5f), _bulletManager));
+        _player = new Player(new Vector2f(100, RES_HEIGHT / 2), _bulletManager);
     }
 
     public void RunGame()
@@ -100,7 +101,7 @@ public class Game
 
     void Initialize()
     {
-        
+        _collisionManager = new CollisionManager(_bulletManager.playerBullets, _bulletManager.enemyBullets, _enemies, _planetManager.planets, _player);
     }
     
     void Update()
@@ -108,9 +109,9 @@ public class Game
         // All update code here!
 	    _planetManager.Update();
         _bulletManager.Update();
-        player.update();
+        _player.update();
         // Collision Updates
-        _collisionManager.Update(_bulletManager.playerBullets, _bulletManager.enemyBullets, _planetManager.planets, player);
+        _collisionManager.Update();
 
         
 
@@ -146,8 +147,8 @@ public class Game
         // All draw code here!
         _bulletManager.DrawBullets(_window);
         _planetManager.DrawPlanets(_window);
-        _window.Draw(player);
-        _window.Draw(_enemy);
+        _window.Draw(_player);
+        foreach (Enemy enemy in _enemies) _window.Draw(enemy);
     }
 
 }
