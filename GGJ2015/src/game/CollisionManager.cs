@@ -7,12 +7,23 @@ using SFML.Window;
 
 class CollisionManager
 {
-    public CollisionManager()
+    List<Bullet> _playerBullets;
+    List<Bullet> _enemyBullets;
+    List<Enemy> _enemies;
+    Planet[] _planets;
+    Player _player;
+
+    public CollisionManager(List<Bullet> playerBullets, List<Bullet> enemyBullets, List<Enemy> enemies, Planet[] planets, Player player)
     {
+        _playerBullets = playerBullets;
+        _enemyBullets = enemyBullets;
+        _enemies = enemies;
+        _planets = planets;
+        _player = player;
     }
 
 
-    public void Update(List<Bullet> playerBullets, List<Bullet> enemyBullets, Planet[] planets, Player player)
+    public void Update()
     {
         /* Every player bullet with enemy with planet
          * Every enemy bullet with player with planet
@@ -29,19 +40,19 @@ class CollisionManager
 
         // Planets with player ========================================================================================================
 
-        foreach (Planet planet in planets)
+        foreach (Planet planet in _planets)
         {
             // 1 Player
 
             // This IF checks if the player is in the planet's gravitational field
-            if (CircleMath.Intersects(planet.sprite.Position, planet.gravitationalFieldRadius, player.position, player.radius))
+            if (CircleMath.Intersects(planet.sprite.Position, planet.gravitationalFieldRadius, _player.position, _player.radius))
             {
 
                 // Kaboom player if colliding with planet function
 
 
                 // Colliding between planets and player
-                if (CircleMath.Intersects(planet.sprite.Position, planet.sprite.Radius, player.position, player.radius))
+                if (CircleMath.Intersects(planet.sprite.Position, planet.sprite.Radius, _player.position, _player.radius))
                 {
 
 
@@ -72,9 +83,9 @@ class CollisionManager
         // ========================================================================================================
 
         // Player Bullets
-        foreach (Bullet bullet in playerBullets)
+        foreach (Bullet bullet in _playerBullets)
         {
-            foreach (Planet planet in planets)
+            foreach (Planet planet in _planets)
             {
                 // If intersecting with gravity field
                 if (CircleMath.Intersects(planet.sprite.Position, planet.gravitationalFieldRadius, bullet.position, bullet.radius))
@@ -85,7 +96,7 @@ class CollisionManager
                     // Bullet Collide with Planet
                     if (CircleMath.Intersects(planet.sprite.Position, planet.radius, bullet.position, bullet.radius))
                     {
-                        player.score(10);
+                        _player.score(10);
                         bullet.SetActive(false);    // Destroy bullet
                     }
                 }
@@ -99,9 +110,9 @@ class CollisionManager
         // ========================================================================================================
 
         // Enemy Bullets
-        foreach (Bullet bullet in enemyBullets)
+        foreach (Bullet bullet in _enemyBullets)
         {
-            foreach (Planet planet in planets)
+            foreach (Planet planet in _planets)
             {
                 // If intersecting with gravity field
                 if (CircleMath.Intersects(planet.sprite.Position, planet.gravitationalFieldRadius, bullet.position, bullet.radius))
