@@ -43,11 +43,11 @@ class Player : Drawable
         {
             _johnBervege.Position += new Vector2f(0, Time.deltaTime * SPEED);
         }
-        if (Input.getKey(Keyboard.Key.D) == true || Input.getKey(Keyboard.Key.Left))
+        if (Input.getKey(Keyboard.Key.D) == true || Input.getKey(Keyboard.Key.Right))
         {
             _johnBervege.Position += new Vector2f(Time.deltaTime * SPEED, 0);
         }
-        if (Input.getKey(Keyboard.Key.A) == true || Input.getKey(Keyboard.Key.Right))
+        if (Input.getKey(Keyboard.Key.A) == true || Input.getKey(Keyboard.Key.Left))
         {
             _johnBervege.Position += new Vector2f(-Time.deltaTime * SPEED, 0);
         }
@@ -71,7 +71,6 @@ class Player : Drawable
         _timer += Time.deltaTime;
         FireBullet();
         handleInput();
-        _johnBervege.Color = new Color((byte)random.Next(), (byte)random.Next(), (byte)random.Next());
     }
 
     public void Draw(RenderTarget target, RenderStates states)
