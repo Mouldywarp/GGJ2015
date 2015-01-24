@@ -14,9 +14,9 @@ class Bullet : Drawable
 
     public Vector2f position { get { return _animation.position; } set { _animation.position = value; } }
     public Vector2f velocity { set { _velocity = value; } }
-    public bool alive { set { _alive = value; } }
     public float radius { get { return _radius; } }
-
+    public bool isActive { get { return _alive; } }
+    public void SetActive(bool active) { _alive = active; }
 
     public Bullet()
     {
@@ -32,13 +32,11 @@ class Bullet : Drawable
 
     public void Draw(RenderTarget target, RenderStates states)
     {
-        if (!_alive) return;
         _animation.Draw(target, states);
     }
 
     public void Update()
     {
-        if (!_alive) return;
         position += _velocity * Time.deltaTime;
     }
 }
