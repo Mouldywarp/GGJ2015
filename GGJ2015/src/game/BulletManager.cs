@@ -34,11 +34,11 @@ class BulletManager
     }
 
 
-    public void Update()
+    public void Update(Planet[] planets)
     {
         for (int i = _activeBullets.Count - 1; i >= 0; i--)
         {
-            _activeBullets[i].Update();
+            _activeBullets[i].Update(planets);
             if (!_activeBullets[i].isActive)
             {
                 _inactiveBullets.Push(_activeBullets[i]);

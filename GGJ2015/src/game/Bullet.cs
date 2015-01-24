@@ -35,8 +35,16 @@ class Bullet : Drawable
         _animation.Draw(target, states);
     }
 
-    public void Update()
+    public void Update(Planet[] planets)
     {
         position += _velocity * Time.deltaTime;
+        foreach(Planet planet in planets)
+        {
+            if (CircleMath.Intersects(this.position, this.radius, planet.position, planet.radius))
+            {
+                _alive = false;
+                break;
+            }
+        }
     }
 }

@@ -17,7 +17,7 @@ class Planet : Drawable
     public Vector2f position { get { return _position; } set { _position = value; } }
     public Vector2f velocity { set { _velocity = value; } }
     public float rotation { get { return _rotation; } set { _rotation = value; } }
-    public float radius { get { return _radius; } set { _radius = value; } }
+    public float radius { get { return _sprite.Radius; } set { sprite.Radius = value; } }
     public CircleShape sprite { get { return _sprite; } }
     public float angularVelocity { get { return _angularVelocity; } set { _angularVelocity = value; } }
 

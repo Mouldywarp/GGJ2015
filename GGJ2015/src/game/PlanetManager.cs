@@ -25,7 +25,6 @@ class PlanetManager
             _planets[i].sprite.FillColor = Color.Red;
             _planets[i].sprite.Radius = 16;
             _planets[i].sprite.Origin = new Vector2f(16, 16);
-            _planets[i].sprite.SetPointCount(3);
             _planets[i].angularVelocity = random.Next(10) + 10;
         }
     }
