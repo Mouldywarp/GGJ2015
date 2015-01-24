@@ -27,6 +27,9 @@ public class Game
 
     Player _player;
 
+    Background _background = new Background(RES_WIDTH, RES_HEIGHT);
+
+
 
     public Game()
     {
@@ -45,7 +48,12 @@ public class Game
         _window.KeyPressed += new EventHandler<KeyEventArgs>(OnKeypressed);
         _window.KeyReleased += new EventHandler<KeyEventArgs>(OnKeyrelease);
         UpdateEvent += new UpdateEventHandler(Update); // Add Game's Update function to our Update event (this is an event to tie to Time class)
-        
+
+        // Player
+        player.Position = new Vector2f(RES_WIDTH * 0.2f, RES_HEIGHT * 0.5f);
+        player.Origin = new Vector2f(16, 16);
+        player.FillColor = Color.Green;
+
         // Create Time!!
         Time.CreateTime(this);
 
@@ -65,6 +73,7 @@ public class Game
             if (_fixedFrameTimer >= _frameDelay)
             {
                 FixedUpdate();
+              
                 _fixedFrameTimer = 0;
             }
             
@@ -79,7 +88,6 @@ public class Game
     {
         _window.Close();
     }
-
 
     void OnResize(object sender, SizeEventArgs e)
     {
@@ -103,17 +111,18 @@ public class Game
         _collisionManager = new CollisionManager(_bulletManager.playerBullets, _bulletManager.enemyBullets, _enemySpuffer.enemies, _planetManager.planets, _player);
         _enemySpuffer.CreateEnemy(new Vector2f(RES_WIDTH * 0.5f, RES_HEIGHT * 0.5f), new Vector2f());
     }
-    
+  
     void Update()
     {
         // All update code here!
 	    _planetManager.Update();
         _bulletManager.Update();
-        _player.update();
-        // Collision Updates
-        _collisionManager.Update();
-
+        _background.update();
+        JohnBervege.update();
         
+       
+        // Collision Updates
+        _collisionManager.Update(_bulletManager.playerBullets, _bulletManager.enemyBullets, _planetManager.planets, player);        
 
         if (Input.getKey(Keyboard.Key.P))
         {
@@ -129,8 +138,6 @@ public class Game
             Vector2f velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
             _bulletManager.CreateBullet(Bullet.Shooter.ENEMY, position, velocity);
         }
-
-
     }
 
     void FixedUpdate()
@@ -139,16 +146,18 @@ public class Game
         //Vector2f position = new Vector2f(random.Next(Game.RES_WIDTH), random.Next(Game.RES_HEIGHT));
         //Vector2f velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
         //_bulletManager.CreateBullet(Bullet.Shooter.ENEMY, position, velocity);
-        //JohnBervege.update();
     }
 
     void Draw()
     {
-        // All draw code here!
+        // All draw code here
+        _background.Draw(_window);
+
         _bulletManager.DrawBullets(_window);
         _planetManager.DrawPlanets(_window);
         _window.Draw(_player);
         _enemySpuffer.DrawEnemies(_window);
+
     }
 
 }
