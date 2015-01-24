@@ -8,6 +8,8 @@ using SFML.Graphics;
  * */
 class CircleMath
 {
+    const float PI = 3.1412f;
+
     //! Checks an objects distance to a circle
     public static bool Intersects(Vector2f p1, float rad1, Vector2f p2, float rad2)
     {
@@ -30,5 +32,12 @@ class CircleMath
         return distanceBetween.X + distanceBetween.Y;            // dist = c^2
     }
 
+
+    public static float CalculateGravitationalTimeEffect(Planet planet, Vector2f objPosition)
+    {
+        // Then calculate the gravitational time effect
+        float density = planet.mass / (PI * planet.radius * planet.radius);
+        return density / (CircleMath.GetSquaredDistanceBetween(planet.position, objPosition));      // Grav Effect
+    }
 }
 

@@ -51,11 +51,13 @@
     <Compile Include="src\game\Assets.cs" />
     <Compile Include="src\game\Bullet.cs" />
     <Compile Include="src\game\BulletManager.cs" />
+    <Compile Include="src\game\CollisionManager.cs" />
     <Compile Include="src\game\Game.cs" />
     <Compile Include="src\game\CircleMath.cs" />
     <Compile Include="src\game\Input.cs" />
     <Compile Include="src\game\Planet.cs" />
     <Compile Include="src\game\PlanetManager.cs" />
+    <Compile Include="src\game\Player.cs" />
     <Compile Include="src\game\TileMath.cs" />
     <Compile Include="src\game\Time.cs" />
     <Compile Include="src\Main.cs">
