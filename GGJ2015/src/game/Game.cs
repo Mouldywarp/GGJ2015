@@ -23,12 +23,11 @@ public class Game
     BulletManager _bulletManager = new BulletManager();
     PlanetManager _planetManager = new PlanetManager();
     CollisionManager _collisionManager = new CollisionManager();
-
+    Background _background = new Background(RES_WIDTH, RES_HEIGHT);
     CircleShape player = new CircleShape(16);
 
     Player JohnBervege;
     Enemy _enemy;
-
 
     public Game()
     {
@@ -72,6 +71,7 @@ public class Game
             if (_fixedFrameTimer >= _frameDelay)
             {
                 FixedUpdate();
+              
                 _fixedFrameTimer = 0;
             }
             
@@ -86,7 +86,6 @@ public class Game
     {
         _window.Close();
     }
-
 
     void OnResize(object sender, SizeEventArgs e)
     {
@@ -109,17 +108,18 @@ public class Game
     {
         
     }
-    
+  
     void Update()
     {
         // All update code here!
 	    _planetManager.Update();
         _bulletManager.Update();
+        _background.update();
         JohnBervege.update();
-        // Collision Updates
-        _collisionManager.Update(_bulletManager.playerBullets, _bulletManager.enemyBullets, _planetManager.planets, player);
-
         
+       
+        // Collision Updates
+        _collisionManager.Update(_bulletManager.playerBullets, _bulletManager.enemyBullets, _planetManager.planets, player);        
 
         if (Input.getKey(Keyboard.Key.P))
         {
@@ -135,8 +135,6 @@ public class Game
             Vector2f velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
             _bulletManager.CreateBullet(Bullet.Shooter.ENEMY, position, velocity);
         }
-
-
     }
 
     void FixedUpdate()
@@ -145,16 +143,17 @@ public class Game
         //Vector2f position = new Vector2f(random.Next(Game.RES_WIDTH), random.Next(Game.RES_HEIGHT));
         //Vector2f velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
         //_bulletManager.CreateBullet(Bullet.Shooter.ENEMY, position, velocity);
-        //JohnBervege.update();
     }
 
     void Draw()
     {
-        // All draw code here!
-        _bulletManager.DrawBullets(_window);
-        _planetManager.DrawPlanets(_window);
+        // All draw code here
+        _background.Draw(_window);
+
         _window.Draw(JohnBervege);
         _window.Draw(_enemy);
+        _bulletManager.DrawBullets(_window);
+        _planetManager.DrawPlanets(_window);       
     }
 
 }
