@@ -24,15 +24,13 @@ public class Game
     PlanetManager _planetManager = new PlanetManager();
     CollisionManager _collisionManager = new CollisionManager();
 
-    CircleShape player = new CircleShape(16);
-
-    Player JohnBervege;
+    Player player;
     Enemy _enemy;
 
 
     public Game()
     {
-        JohnBervege = new Player(new Vector2f(100, RES_HEIGHT / 2), _bulletManager);
+        player = new Player(new Vector2f(100, RES_HEIGHT / 2), _bulletManager);
         _enemy = new Enemy(new Vector2f(RES_WIDTH * 0.5f, RES_HEIGHT * 0.5f), _bulletManager);
     }
 
@@ -47,12 +45,7 @@ public class Game
         _window.KeyPressed += new EventHandler<KeyEventArgs>(OnKeypressed);
         _window.KeyReleased += new EventHandler<KeyEventArgs>(OnKeyrelease);
         UpdateEvent += new UpdateEventHandler(Update); // Add Game's Update function to our Update event (this is an event to tie to Time class)
-
-        // Player
-        player.Position = new Vector2f(RES_WIDTH * 0.2f, RES_HEIGHT * 0.5f);
-        player.Origin = new Vector2f(16, 16);
-        player.FillColor = Color.Green;
-
+        
         // Create Time!!
         Time.CreateTime(this);
 
@@ -115,7 +108,7 @@ public class Game
         // All update code here!
 	    _planetManager.Update();
         _bulletManager.Update();
-        JohnBervege.update();
+        player.update();
         // Collision Updates
         _collisionManager.Update(_bulletManager.playerBullets, _bulletManager.enemyBullets, _planetManager.planets, player);
 
@@ -153,7 +146,7 @@ public class Game
         // All draw code here!
         _bulletManager.DrawBullets(_window);
         _planetManager.DrawPlanets(_window);
-        _window.Draw(JohnBervege);
+        _window.Draw(player);
         _window.Draw(_enemy);
     }
 

@@ -34,7 +34,7 @@ class Player : Drawable
     Sprite _sprite;
     Vector2f _velocity;
     public Vector2f position { set { _sprite.Position = value; } get { return _sprite.Position; } }
-    float radius { get { return _radius; } }
+    public float radius { get { return _radius; } }
 
     public Player(Vector2f Position, BulletManager bmIns)
     {

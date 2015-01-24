@@ -12,7 +12,7 @@ class CollisionManager
     }
 
 
-    public void Update(List<Bullet> playerBullets, List<Bullet> enemyBullets, Planet[] planets, CircleShape player)
+    public void Update(List<Bullet> playerBullets, List<Bullet> enemyBullets, Planet[] planets, Player player)
     {
         /* Every player bullet with enemy with planet
          * Every enemy bullet with player with planet
@@ -34,14 +34,14 @@ class CollisionManager
             // 1 Player
 
             // This IF checks if the player is in the planet's gravitational field
-            if (CircleMath.Intersects(planet.sprite.Position, planet.gravitationalFieldRadius, player.Position, player.Radius))
+            if (CircleMath.Intersects(planet.sprite.Position, planet.gravitationalFieldRadius, player.position, player.radius))
             {
 
                 // Kaboom player if colliding with planet function
 
 
                 // Colliding between planets and player
-                if (CircleMath.Intersects(planet.sprite.Position, planet.sprite.Radius, player.Position, player.Radius))
+                if (CircleMath.Intersects(planet.sprite.Position, planet.sprite.Radius, player.position, player.radius))
                 {
 
 
@@ -85,7 +85,7 @@ class CollisionManager
                     // Bullet Collide with Planet
                     if (CircleMath.Intersects(planet.sprite.Position, planet.radius, bullet.position, bullet.radius))
                     {
-                      //  player.score(10);
+                        player.score(10);
                         bullet.SetActive(false);    // Destroy bullet
                     }
                 }
