@@ -7,7 +7,10 @@ using SFML.Window;
 
 
 class Player : Drawable
-{
+{ 
+    int curScore = 0;
+    Text t_score;
+    Font font;
 
     const float SPEED = 180;
 
@@ -15,6 +18,12 @@ class Player : Drawable
     const float RATEOFFIRE = 0.035f;
 
     static float _timer;
+
+    public void score(int num)
+    {
+        curScore += num;
+        t_score = new Text(curScore.ToString(), font);
+    }
 
     bool _creep;
     BulletManager _cuntingtonSmithe;
@@ -34,6 +43,12 @@ class Player : Drawable
         _sprite.Origin = new Vector2f(32, 16);
         _radius = 16;
         _cuntingtonSmithe = bmIns;
+
+        // Score Stuff
+        font = new Font("../../fonts/arial.ttf");
+        t_score = new Text(curScore.ToString(), font);
+        t_score.Position = new Vector2f(10, 10);
+        t_score.CharacterSize = 24;
         _creep = false;
     }
 
@@ -99,6 +114,7 @@ class Player : Drawable
 
     public void Draw(RenderTarget target, RenderStates states)
     {
+        target.Draw(t_score);
         target.Draw(_sprite);
     }
 

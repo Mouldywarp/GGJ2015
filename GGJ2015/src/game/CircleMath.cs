@@ -14,12 +14,27 @@ class CircleMath
     public static bool Intersects(Vector2f p1, float rad1, Vector2f p2, float rad2)
     {
        float dist = GetSquaredDistanceBetween(p1, p2);          // Get Squared distance between
+      // dist = (float)Math.Sqrt(dist);
 
+      // float distanceBetweenTwoCircles = dist - rad1 - rad2;
+
+
+       //if (distanceBetweenTwoCircles > 0)
+       //{
+       //    return false;
+       //}
+       //else
+       //{
+       //    return true;
+       //}
+
+        
         // Radius Lengths
         float rad = rad1 + rad2;
         rad *= rad;                                             // compare rad^2 to c^2
 
         return dist < rad;
+       
     }
 
     // Returns Distance From a Circle to a Circle

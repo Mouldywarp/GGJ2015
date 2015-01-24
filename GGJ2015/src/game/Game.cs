@@ -28,6 +28,7 @@ public class Game
 
     Player JohnBervege;
 
+
     public Game()
     {
         JohnBervege = new Player(new Vector2f(100, RES_HEIGHT / 2), _bulletManager);
@@ -143,8 +144,6 @@ public class Game
         //Vector2f velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
         //_bulletManager.CreateBullet(Bullet.Shooter.ENEMY, position, velocity);
         //JohnBervege.update();
-
-
     }
 
     void Draw()

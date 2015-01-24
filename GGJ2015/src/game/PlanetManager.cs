@@ -8,7 +8,7 @@ using SFML.Window;
 
 class PlanetManager
 {
-    Planet[] _planets = new Planet[5];
+    Planet[] _planets = new Planet[2];
 
     public Planet[] planets { get { return _planets; } }
 
@@ -21,12 +21,17 @@ class PlanetManager
         {
             _planets[i] = new Planet();
             _planets[i].position = new Vector2f(200, 200);//random.Next(Game.RES_WIDTH), random.Next(Game.RES_HEIGHT));
-            _planets[i].velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
+            _planets[i].velocity = new Vector2f(0, 0);//new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
             _planets[i].sprite.FillColor = Color.Red;
             _planets[i].sprite.Radius = 16;
             _planets[i].sprite.Origin = new Vector2f(16, 16);
             _planets[i].angularVelocity = random.Next(10) + 10;
+            _planets[i].gravitationalFieldRadius = _planets[i].sprite.Radius + 8;
         }
+
+        _planets[1].position = new Vector2f(300, 300);
+            _planets[1].sprite.Radius = 32;
+            _planets[1].sprite.Origin = new Vector2f(32, 32);
     }
 
 
