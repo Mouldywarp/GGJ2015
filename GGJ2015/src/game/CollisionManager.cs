@@ -42,6 +42,13 @@ class CollisionManager
 
         foreach (Planet planet in _planets)
         {
+            // Check if current planet is off screen
+            if (CircleMath.OffScreen(planet.position))
+            {
+                // Delete Planet Stuff
+                continue;
+            }
+
             // 1 Player
 
             // This IF checks if the player is in the planet's gravitational field
@@ -85,6 +92,13 @@ class CollisionManager
         // Player Bullets
         foreach (Bullet bullet in _playerBullets)
         {
+            // Check if current bullet is off screen
+            if (CircleMath.OffScreen(bullet.position))
+            {
+                // Delete bullet Stuff
+                continue;
+            }
+
             foreach (Planet planet in _planets)
             {
                 // If intersecting with gravity field
@@ -112,6 +126,13 @@ class CollisionManager
         // Enemy Bullets
         foreach (Bullet bullet in _enemyBullets)
         {
+            // Check if current bullet is off screen
+            if (CircleMath.OffScreen(bullet.position))
+            {
+                // Delete bullet Stuff
+                continue;
+            }
+
             foreach (Planet planet in _planets)
             {
                 // If intersecting with gravity field
