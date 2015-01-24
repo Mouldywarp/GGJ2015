@@ -17,11 +17,11 @@ public class Game
     RenderWindow _window; //!< The window we draw everything to in the game
     private float _fixedFrameTimer;
     private float _frameDelay = 1 / FRAMES_PER_SECOND;
+    Random random = new Random();
 
     // Game Objects
     BulletManager _bulletManager = new BulletManager();
-    PlanetManager _planetManager = new PlanetManager();
-   
+
     public Game()
     {
     }
@@ -38,6 +38,8 @@ public class Game
 
         // Create Time!!
         Time.CreateTime(this);
+
+        Initialize();
 
         // Game loop
         while (_window.IsOpen())
@@ -75,27 +77,31 @@ public class Game
     //! Update is an event so it can be passed to time to link framerates
     public delegate void UpdateEventHandler();
     public event UpdateEventHandler UpdateEvent;
-    
+
+
+
+    void Initialize()
+    {
+    }
     
     void Update()
     {
         // All update code here!
-        _planetManager.Update();
-        _bulletManager.Update(_planetManager.planets);
-
-        // Update Player
+        _bulletManager.Update();
     }
 
     void FixedUpdate()
     {
         // All fixed frame rate Update code here!
+        Vector2f position = new Vector2f(random.Next(Game.RES_WIDTH), random.Next(Game.RES_HEIGHT));
+        Vector2f velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
+        _bulletManager.CreateBullet(position, velocity);
     }
 
     void Draw()
     {
         // All draw code here!
         _bulletManager.DrawBullets(_window);
-        _planetManager.DrawPlanets(_window);
     }
 
 }

@@ -8,32 +8,48 @@ using SFML.Window;
 
 class BulletManager
 {
-    Bullet[] _bullets = new Bullet[1000];
+    Stack<Bullet> _inactiveBullets = new Stack<Bullet>();
+    List<Bullet> _activeBullets = new List<Bullet>();
 
     public BulletManager()
     {
-        Random random = new Random();
-        
-
-        for (int i = 0; i < _bullets.Length; ++i)
+        for (int i = 0; i < 10000; ++i)
         {
-            _bullets[i] = new Bullet();
-            _bullets[i].position = new Vector2f(random.Next(Game.RES_WIDTH), random.Next(Game.RES_HEIGHT));
-            _bullets[i].velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
+            Bullet bullet = new Bullet();
+            _inactiveBullets.Push(bullet);
         }
     }
 
 
-    public void Update(Planet[] planets)
-    {
-        foreach (Bullet bullet in _bullets) bullet.Update(planets);
-	foreach (Bullet bullet in _bullets) bullet.Update();
 
+
+    public void CreateBullet(Vector2f position, Vector2f velocity)
+    {
+        if (_inactiveBullets.Count == 0) return;
+        Bullet newBullet = _inactiveBullets.Pop();
+        newBullet.SetActive(true);
+        newBullet.position = position;
+        newBullet.velocity = velocity;
+        _activeBullets.Add(newBullet);
+    }
+
+
+    public void Update()
+    {
+        for (int i = _activeBullets.Count - 1; i >= 0; i--)
+        {
+            _activeBullets[i].Update();
+            if (!_activeBullets[i].isActive)
+            {
+                _inactiveBullets.Push(_activeBullets[i]);
+                _activeBullets.RemoveAt(i);
+            }
+        }
     }
 
     public void DrawBullets(RenderWindow window)
     {
-        foreach (Bullet bullet in _bullets) window.Draw(bullet);
+        foreach (Bullet bullet in _activeBullets) window.Draw(bullet);
     }
 
 }

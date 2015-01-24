@@ -34,7 +34,7 @@ public class Time
 
     void OnUpdate()
     {
-        _deltaTime = (float)_stopwatch.Elapsed.TotalSeconds;
+        _deltaTime = Math.Min((float)_stopwatch.Elapsed.TotalSeconds, 1.0f);
         _stopwatch.Restart();
     }
 }
