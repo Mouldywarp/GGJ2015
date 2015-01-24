@@ -9,7 +9,10 @@ using SFML.Window;
 class BulletManager
 {
     Stack<Bullet> _inactiveBullets = new Stack<Bullet>();
-    List<Bullet> _activeBullets = new List<Bullet>();
+    List<Bullet> _playerBullets = new List<Bullet>();
+    List<Bullet> _enemyBullets = new List<Bullet>();
+
+    public List<Bullet> bullets { get { return _activeBullets; } }
 
     public BulletManager()
     {
@@ -21,33 +24,45 @@ class BulletManager
     }
 
 
-    public void CreateBullet(Vector2f position, Vector2f velocity)
+
+
+
+    public void CreateBullet(Bullet.Shooter whoShotme, Vector2f position, Vector2f velocity)
     {
         if (_inactiveBullets.Count == 0) return;
         Bullet newBullet = _inactiveBullets.Pop();
         newBullet.SetActive(true);
         newBullet.position = position;
         newBullet.velocity = velocity;
-        _activeBullets.Add(newBullet);
+        newBullet.SetShooter(whoShotme);
+
+        switch (whoShotme)
+        {
+            case Bullet.Shooter.PLAYER:     _playerBullets.Add(newBullet);      break;
+            case Bullet.Shooter.ENEMY:      _enemyBullets.Add(newBullet);       break;
+        }
     }
 
 
-    public void Update(Planet[] planets)
+
+    public void Update()
     {
-        for (int i = _activeBullets.Count - 1; i >= 0; i--)
+        for (int i = _enemyBullets.Count - 1; i >= 0; i--)
         {
-            _activeBullets[i].Update(planets);
-            if (!_activeBullets[i].isActive)
+            if (!_enemyBullets[i].isActive)
             {
-                _inactiveBullets.Push(_activeBullets[i]);
-                _activeBullets.RemoveAt(i);
+                _inactiveBullets.Push(_enemyBullets[i]);
+                _enemyBullets.RemoveAt(i);
             }
         }
     }
 
+   
+
     public void DrawBullets(RenderWindow window)
     {
-        foreach (Bullet bullet in _activeBullets) window.Draw(bullet);
+        foreach (Bullet bullet in _enemyBullets) window.Draw(bullet);
+        foreach (Bullet bullet in _playerBullets) window.Draw(bullet);
     }
 
 }

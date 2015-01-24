@@ -8,9 +8,20 @@ using SFML.Window;
 
 class Player : Drawable
 {
+<<<<<<< HEAD
     const float SPEED = 500;
     const float BULLETSPEED = 500;
     const float RATEOFFIRE = 0.075f;
+=======
+    //Sprite
+    Sprite _sprite;
+
+
+    public Player()
+    {
+        //_sprite = new Sprite(Assets.GetTexture("
+    }
+>>>>>>> origin/master
 
     static float _timer;
 
