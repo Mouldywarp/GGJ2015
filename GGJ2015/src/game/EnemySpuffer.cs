@@ -8,11 +8,15 @@ using SFML.Window;
 
 class EnemySpuffer
 {
+    Random _random = new Random();
     Stack<Enemy> _inactiveEnemies = new Stack<Enemy>();
     List<Enemy> _activeEnemies = new List<Enemy>();
 
     public List<Enemy> enemies { get { return _activeEnemies; } }
 
+
+    float _spuffTimer = 0;
+    float _spuffFrequency = 0.5f;
 
 
     public EnemySpuffer(BulletManager manageMe)
@@ -33,13 +37,22 @@ class EnemySpuffer
         newEnemy.SetActive(true);
         newEnemy.position = position;
         _activeEnemies.Add(newEnemy);
-        //newEnemy.velocity = velocity;
+        newEnemy.velocity = velocity;
     }
 
 
 
     public void Update()
     {
+        _spuffTimer += Time.deltaTime;
+        if (_spuffTimer >= _spuffFrequency)
+        {
+            _spuffTimer = 0;
+            CreateEnemy(new Vector2f(Game.RES_WIDTH + 100, _random.Next(50, Game.RES_HEIGHT - 50)), new Vector2f(-200, 0));
+        }
+
+
+
         for (int i = _activeEnemies.Count - 1; i >= 0; i--)
         {
             _activeEnemies[i].Update();

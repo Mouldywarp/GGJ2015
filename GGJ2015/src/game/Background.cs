@@ -20,7 +20,7 @@ class Background
         _width = width;
         _height = height;
         _inc = 0;
-        _scrollSpeed = 0.01f;
+        _scrollSpeed = 0.04f;
         _scrollTimer = 0;
         _texture = new Texture(Assets.GetTexture("../../images/BackGround.png"));
         _texture.Repeated = true;

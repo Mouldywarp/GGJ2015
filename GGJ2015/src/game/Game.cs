@@ -104,7 +104,7 @@ public class Game
     void Initialize()
     {
         _collisionManager = new CollisionManager(_bulletManager.playerBullets, _bulletManager.enemyBullets, _enemySpuffer.enemies, _planetManager.planets, _player);
-        _enemySpuffer.CreateEnemy(new Vector2f(RES_WIDTH * 0.5f, RES_HEIGHT * 0.5f), new Vector2f());
+        //_enemySpuffer.CreateEnemy(new Vector2f(RES_WIDTH * 0.5f, RES_HEIGHT * 0.5f), new Vector2f(-200, 0));
     }
   
     void Update()
@@ -114,6 +114,7 @@ public class Game
         _bulletManager.Update();
         _background.update();
         _player.update();
+        _enemySpuffer.Update();
         
        
         // Collision Updates
