@@ -22,7 +22,7 @@ public class Game
     // Game Objects
     BulletManager _bulletManager = new BulletManager();
     PlanetManager _planetManager = new PlanetManager();
-    CollisionManager _collisionManager = new CollisionManager();
+    //CollisionManager _collisionManager = new CollisionManager();
 
     CircleShape player = new CircleShape(16);
 
@@ -110,7 +110,7 @@ public class Game
     void Update()
     {
         // All update code here!
-	_planetManager.Update();
+	//_planetManager.Update();
         _bulletManager.Update();
 
         // Collision Updates
@@ -149,11 +149,7 @@ public class Game
         // All draw code here!
         _bulletManager.DrawBullets(_window);
         _planetManager.DrawPlanets(_window);
-<<<<<<< HEAD
         _window.Draw(JohnBervege);
-=======
-        _window.Draw(player);
->>>>>>> origin/master
     }
 
 }
