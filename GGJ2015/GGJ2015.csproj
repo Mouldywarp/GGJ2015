@@ -52,6 +52,7 @@
     <Compile Include="src\game\Bullet.cs" />
     <Compile Include="src\game\BulletManager.cs" />
     <Compile Include="src\game\CollisionManager.cs" />
+    <Compile Include="src\game\Enemy.cs" />
     <Compile Include="src\game\Game.cs" />
     <Compile Include="src\game\CircleMath.cs" />
     <Compile Include="src\game\Input.cs" />
