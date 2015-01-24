@@ -8,11 +8,9 @@ using SFML.Window;
 
 class Player : Drawable
 {
-<<<<<<< HEAD
     const float SPEED = 500;
     const float BULLETSPEED = 500;
     const float RATEOFFIRE = 0.075f;
-=======
     //Sprite
     Sprite _sprite;
 
@@ -21,7 +19,6 @@ class Player : Drawable
     {
         //_sprite = new Sprite(Assets.GetTexture("
     }
->>>>>>> origin/master
 
     static float _timer;
 
@@ -61,7 +58,7 @@ class Player : Drawable
         if (_timer > RATEOFFIRE)
         {
             _timer = 0;
-            _cuntingtonSmithe.CreateBullet(_johnBervege.Position, new Vector2f(BULLETSPEED, 0));
+           // _cuntingtonSmithe.CreateBullet(_johnBervege.Position, new Vector2f(BULLETSPEED, 0));
         }
     }
 

@@ -149,11 +149,7 @@ public class Game
         // All draw code here!
         _bulletManager.DrawBullets(_window);
         _planetManager.DrawPlanets(_window);
-<<<<<<< HEAD
-        _window.Draw(JohnBervege);
-=======
         _window.Draw(player);
->>>>>>> origin/master
     }
 
 }
