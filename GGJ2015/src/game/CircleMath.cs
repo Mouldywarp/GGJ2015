@@ -40,5 +40,12 @@ class CircleMath
         float density = planet.mass / (PI * planet.radius * planet.radius);
         return density / (CircleMath.GetSquaredDistanceBetween(planet.position, objPosition));      // Grav Effect
     }
+
+    public static bool OffScreen(FloatRect bounds)
+    {
+        if (bounds.Left + bounds.Width > Game.RES_WIDTH || bounds.Left < 0) return true;
+        if (bounds.Top + bounds.Height > Game.RES_WIDTH || bounds.Top < 0) return true;
+        return false;
+    }
 }
 

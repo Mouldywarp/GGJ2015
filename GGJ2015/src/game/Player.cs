@@ -35,6 +35,7 @@ class Player : Drawable
     Vector2f _velocity;
     public Vector2f position { set { _sprite.Position = value; } get { return _sprite.Position; } }
     public float radius { get { return _radius; } }
+    public FloatRect bounds { get { return _sprite.GetGlobalBounds(); } }
 
     public Player(Vector2f Position, BulletManager bmIns)
     {
@@ -59,19 +60,19 @@ class Player : Drawable
 
         if (Input.getKey(Keyboard.Key.W) == true || Input.getKey(Keyboard.Key.Up))
         {
-           _velocity.Y = -SPEED;
+            if (_sprite.Position.Y - 90 > 0) _velocity.Y = -SPEED;
         }
         if (Input.getKey(Keyboard.Key.S) == true || Input.getKey(Keyboard.Key.Down))
         {
-           _velocity.Y = SPEED;
+            if (_sprite.Position.Y + 90 < Game.RES_HEIGHT) _velocity.Y = SPEED;
         }
         if (Input.getKey(Keyboard.Key.D) == true || Input.getKey(Keyboard.Key.Right))
         {
-            _velocity.X = SPEED;
+            if (_sprite.Position.X + 90 < Game.RES_WIDTH) _velocity.X = SPEED;
         }
         if (Input.getKey(Keyboard.Key.A) == true || Input.getKey(Keyboard.Key.Left))
         {
-            _velocity.X = -SPEED;
+            if (_sprite.Position.X - 90 > 0) _velocity.X = -SPEED;
         }
         if (Input.getKey(Keyboard.Key.LShift) == true)
         {
@@ -86,7 +87,7 @@ class Player : Drawable
     {
         if (_creep == true)
         {
-            _sprite.Position += (_velocity / 2) * Time.deltaTime;
+            _sprite.Position += (_velocity * 0.5f) * Time.deltaTime;
         }
         else
         {

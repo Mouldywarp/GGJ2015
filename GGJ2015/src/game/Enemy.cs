@@ -18,6 +18,7 @@ class Enemy : Drawable
 
     public bool isActive { get { return _alive; } }
     public void SetActive(bool active) { _alive = active; }
+    public FloatRect bounds { get { return _sprite.GetGlobalBounds(); } }
 
     
     Random random = new Random();

@@ -14,6 +14,7 @@ class Bullet : Drawable
     bool _alive = false;
     float _radius;
 
+    public FloatRect bounds { get { return _animation.bounds; } }
     public Vector2f position { get { return _animation.position; } set { _animation.position = value; } }
     public Vector2f velocity { set { _velocity = value; } get { return _velocity; } }
     public float radius { get { return _radius; } }

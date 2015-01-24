@@ -16,6 +16,7 @@ class Planet : Drawable
     float _angularVelocity;
     float _mass;
     float _gravitationFieldRadius;
+    public FloatRect bounds { get { return _sprite.GetGlobalBounds(); } }
 
     public Vector2f position { get { return sprite.Position; } set { sprite.Position = value; } }
     public Vector2f velocity { set { _velocity = value; } }
