@@ -15,6 +15,8 @@ public class Game
     public const int FRAMES_PER_SECOND = 60;
 
     RenderWindow _window; //!< The window we draw everything to in the game
+    private float _fixedFrameTimer;
+    private float _frameDelay = 1 / FRAMES_PER_SECOND;
 
     public Game()
     {
@@ -28,7 +30,7 @@ public class Game
         // Event handlers - Add other events such as input in same way!!
         _window.Closed += new EventHandler(OnClosed); // Exactly same as Closed += OnClosed. Slightly different syntax but seems to work exactly the same
         _window.Resized += new EventHandler<SizeEventArgs>(OnResize); // Resize event handler
-        Update += new UpdateEventHandler(OnUpdate); // Add Game's Update function to our Update event (this is an event to tie to Time class)
+        UpdateEvent += new UpdateEventHandler(Update); // Add Game's Update function to our Update event (this is an event to tie to Time class)
 
 
         // Create Time!!
@@ -39,7 +41,17 @@ public class Game
         {
             _window.DispatchEvents();
             _window.Clear(Color.Blue);
-            Update();
+            
+            UpdateEvent(); // call update event
+            
+            // Fixed frame update
+            _fixedFrameTimer += Time.deltaTime;
+            if (_fixedFrameTimer >= _frameDelay)
+            {
+                FixedUpdate();
+                _fixedFrameTimer = 0;
+            }
+            
             Draw();
             _window.Display();
         }
@@ -59,10 +71,17 @@ public class Game
 
     //! Update is an event so it can be passed to time to link framerates
     public delegate void UpdateEventHandler();
-    public event UpdateEventHandler Update;
-    void OnUpdate()
+    public event UpdateEventHandler UpdateEvent;
+    
+    
+    void Update()
     {
-        // All update code here!
+        Console.WriteLine("Hello!");
+        
+    }
+
+    void FixedUpdate()
+    {
     }
 
     void Draw()

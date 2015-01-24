@@ -29,7 +29,7 @@ public class Time
     {
         _stopwatch = new Stopwatch();
         _stopwatch.Start();
-        game.Update += new Game.UpdateEventHandler(OnUpdate);
+        game.UpdateEvent += new Game.UpdateEventHandler(OnUpdate);
     }
 
     void OnUpdate()
