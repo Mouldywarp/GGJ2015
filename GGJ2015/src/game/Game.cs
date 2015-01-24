@@ -18,6 +18,9 @@ public class Game
     private float _fixedFrameTimer;
     private float _frameDelay = 1 / FRAMES_PER_SECOND;
 
+    // Game Objects
+    BulletManager _bulletManager = new BulletManager();
+
     public Game()
     {
     }
@@ -31,7 +34,6 @@ public class Game
         _window.Closed += new EventHandler(OnClosed); // Exactly same as Closed += OnClosed. Slightly different syntax but seems to work exactly the same
         _window.Resized += new EventHandler<SizeEventArgs>(OnResize); // Resize event handler
         UpdateEvent += new UpdateEventHandler(Update); // Add Game's Update function to our Update event (this is an event to tie to Time class)
-
 
         // Create Time!!
         Time.CreateTime(this);
@@ -76,17 +78,19 @@ public class Game
     
     void Update()
     {
-        Console.WriteLine("Hello!");
-        
+        // All update code here!
+        _bulletManager.Update();
     }
 
     void FixedUpdate()
     {
+        // All fixed frame rate Update code here!
     }
 
     void Draw()
     {
         // All draw code here!
+        _bulletManager.DrawBullets(_window);
     }
 
 }
