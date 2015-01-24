@@ -38,6 +38,8 @@ public class Game
         // Event handlers - Add other events such as input in same way!!
         _window.Closed += new EventHandler(OnClosed); // Exactly same as Closed += OnClosed. Slightly different syntax but seems to work exactly the same
         _window.Resized += new EventHandler<SizeEventArgs>(OnResize); // Resize event handler
+        _window.KeyPressed += new EventHandler<KeyEventArgs>(OnKeypressed);
+        _window.KeyReleased += new EventHandler<KeyEventArgs>(OnKeyrelease);
         UpdateEvent += new UpdateEventHandler(Update); // Add Game's Update function to our Update event (this is an event to tie to Time class)
 
         // Player
@@ -82,6 +84,14 @@ public class Game
     {
     }
 
+    void OnKeypressed(object sender, KeyEventArgs e)
+    {
+        Input.keyPressed(e.Code);
+    }
+    void OnKeyrelease(object sender, KeyEventArgs e)
+    {
+        Input.keyReleased(e.Code);
+    }
 
     //! Update is an event so it can be passed to time to link framerates
     public delegate void UpdateEventHandler();
@@ -94,19 +104,37 @@ public class Game
     void Update()
     {
         // All update code here!
-        _planetManager.Update(_bulletManager.bullets);
-        _bulletManager.Update(_planetManager.planets);
+	_planetManager.Update();
+        _bulletManager.Update();
 
         // Collision Updates
         _collisionManager.Update(_bulletManager.bullets, _planetManager.planets, player);
+
+        
+
+        if (Input.getKey(Keyboard.Key.P))
+        {
+            Vector2f position = new Vector2f(random.Next(Game.RES_WIDTH), random.Next(Game.RES_HEIGHT));
+            Vector2f velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
+            _bulletManager.CreateBullet(Bullet.Shooter.PLAYER, position, velocity);
+        }
+
+
+        if (Input.getKey(Keyboard.Key.E))
+        {
+            Vector2f position = new Vector2f(random.Next(Game.RES_WIDTH), random.Next(Game.RES_HEIGHT));
+            Vector2f velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
+            _bulletManager.CreateBullet(Bullet.Shooter.ENEMY, position, velocity);
+        }
+
     }
 
     void FixedUpdate()
     {
         // All fixed frame rate Update code here!
-        Vector2f position = new Vector2f(random.Next(Game.RES_WIDTH), random.Next(Game.RES_HEIGHT));
-        Vector2f velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
-        _bulletManager.CreateBullet(position, velocity);
+        //Vector2f position = new Vector2f(random.Next(Game.RES_WIDTH), random.Next(Game.RES_HEIGHT));
+        //Vector2f velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
+        //_bulletManager.CreateBullet(position, velocity);
     }
 
     void Draw()

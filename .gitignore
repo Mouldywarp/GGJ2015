@@ -223,3 +223,5 @@ GGJ2015/bin/Debug/WarGame.exe
 *.pdb
 *.exe
 *.pdb
+*.exe
+*.suo
