@@ -56,6 +56,7 @@
     <Compile Include="src\game\Input.cs" />
     <Compile Include="src\game\Planet.cs" />
     <Compile Include="src\game\PlanetManager.cs" />
+    <Compile Include="src\game\Player.cs" />
     <Compile Include="src\game\TileMath.cs" />
     <Compile Include="src\game\Time.cs" />
     <Compile Include="src\Main.cs">

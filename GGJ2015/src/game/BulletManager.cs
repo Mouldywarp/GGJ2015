@@ -21,8 +21,6 @@ class BulletManager
     }
 
 
-
-
     public void CreateBullet(Vector2f position, Vector2f velocity)
     {
         if (_inactiveBullets.Count == 0) return;
