@@ -14,6 +14,7 @@ class Enemy : Drawable
     Sprite _sprite;
     EnemyBehaviour _behaveYourself;
     float _radius;
+    float _health;
     bool _alive = false;
     BulletManager _bullets;
     Vector2f _velocity;
@@ -23,6 +24,7 @@ class Enemy : Drawable
     public Vector2f velocity { get {return  _velocity; }  set { _velocity = value; } }
     public bool onScreen { get { return _currentState == State.ONSCREEN; } } 
     public bool isDead { get { return _currentState == State.EXPLODING; } }
+    public float radius { get { return _radius; } }
 
     public bool isActive { get { return _alive; } }
     public void SetActive(bool active) { _alive = active; }
@@ -39,6 +41,7 @@ class Enemy : Drawable
         _sprite = new Sprite(Assets.GetTexture("../../images/enemy.png"));
         _sprite.Origin = new Vector2f(32, 16);
         _radius = 16;
+        _health = 10;       // Takes 10 shots to kill an enemy
         _bullets = bulletManager;
         _behaveYourself = new EnemyBehaviour(this);
     }
@@ -47,6 +50,7 @@ class Enemy : Drawable
     {
         _behaveYourself.SetBehaviour(type);
         _currentState = State.ENTERING;
+        _health = 10;
     }
 
     public void Shoot(Vector2f bulletVelocity)
@@ -84,10 +88,17 @@ class Enemy : Drawable
     }
 
 
-    // Hit by enemy bullets
+    // Hit by player bullets
     public void OnHit()
     {
+        _health--;
 
+        Console.WriteLine(_health);
+
+        if (_health < 1)
+        {
+            _alive = false;
+        }
 
     }
 

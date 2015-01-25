@@ -17,8 +17,8 @@ class PlanetManager
     {
         Random random = new Random();
         
-     //   _textures[0] = Assets.GetTexture("../../images/HassleMoon.png");
-      //  _textures[1] = Assets.GetTexture("../../images/LionelMoon.png");
+        //  _textures[0] = Assets.GetTexture("../../images/HassleMoon.png");
+        //  _textures[1] = Assets.GetTexture("../../images/LionelMoon.png");
 
         // Planet Implementation
         _planets[0] = new Planet(random, Assets.GetTexture("../../images/HassleMoon.png"));

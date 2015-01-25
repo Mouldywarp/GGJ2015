@@ -69,7 +69,7 @@ class CollisionManager
             }
 
 
-            // Planets with enemy 
+           // Planets with enemy 
 
            /* foreach (Enemy enemy in enemies)
             {
@@ -95,7 +95,7 @@ class CollisionManager
         foreach (Bullet bullet in _playerBullets)
         {
 
-            //Check if offscreen
+            // Check if offscreen
             if (CircleMath.OffScreen(bullet.bounds))
             {
                 // Delete Stuff
@@ -121,7 +121,15 @@ class CollisionManager
             }
 
             // Bullet Collide with enemy
-            // foreach(Enemy enemy in enemies)
+            foreach (Enemy enemy in _enemies)
+            {
+                if (CircleMath.Intersects(bullet.position, bullet.radius, enemy.position, enemy.radius))
+                {
+                    _player.score(10);
+                    bullet.SetActive(false);    // Destroy bullet
+                    enemy.OnHit();
+                }
+            }
 
         }
 
