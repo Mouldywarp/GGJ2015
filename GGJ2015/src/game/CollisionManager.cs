@@ -43,14 +43,6 @@ class CollisionManager
         foreach (Planet planet in _planets)
         {
 
-            //Check if offscreen
-            if (CircleMath.OffScreen(planet.bounds))
-            {
-                // Delete Stuff
-                planet.reset();
-                continue;
-            }
-
 
             // 1 Player
 
