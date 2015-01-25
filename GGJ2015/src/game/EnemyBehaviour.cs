@@ -102,19 +102,22 @@ class EnemyBehaviour
         }
 
         // shoot
-        if (_timer < 1.4f) _delayTimer = 0;
-        else if (_delayTimer > 0.5f)
+        if (_timer < 0.5f || _timer > 6.0f) _delayTimer = 0;
+        else if (_delayTimer > 0.9f)
         {
             _delayTimer = 0;
 
             // Spuff me sum buletz
-            for (int i = 0; i < 10; i++)
-            {
-                float ang = CircleMath.Radians(90);
+            int rootAng = Game.random.Next(90, 270);
 
-                float dx = (float)Math.Cos(ang);
-                float dy = (float)Math.Sin(ang);
-                
+            for (int i = 0; i < 30; i++)
+            {
+                float ang = Game.random.Next(rootAng - 2, rootAng + 2);
+                int speed = Game.random.Next(230, 280);
+                Vector2f dir = new Vector2f((float)Math.Cos(ang), (float)Math.Sin(ang));
+
+                Shoot(dir * speed);
+
             }
         }
     }
