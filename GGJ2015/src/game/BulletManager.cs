@@ -25,6 +25,24 @@ class BulletManager
     }
 
 
+    public void Reset()
+    {
+        for (int i = _enemyBullets.Count - 1; i >= 0; i--)
+        {
+            _enemyBullets[i].SetActive(false);
+            _inactiveBullets.Push(_enemyBullets[i]);
+            _enemyBullets.RemoveAt(i);
+        }
+
+        for (int i = _playerBullets.Count - 1; i >= 0; i--)
+        {
+            _playerBullets[i].SetActive(false);
+            _inactiveBullets.Push(_playerBullets[i]);
+            _playerBullets.RemoveAt(i);
+        }
+    }
+
+
     public void CreateBullet(Bullet.Shooter whoShotme, Vector2f position, Vector2f velocity)
     {
         if (_inactiveBullets.Count == 0) return;

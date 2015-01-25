@@ -160,14 +160,13 @@ class CollisionManager
 
                     }
                 }
-
-                // Bullet Collide with player
             }
 
-
-            // Bullet Collisions
-
-            // Player Collisions
+            //Player
+            if (_player.isAlive)
+            {
+                if (CircleMath.Intersects(_player.position, _player.radius, bullet.position, bullet.radius)) _player.Die();
+            }
 
         }
 

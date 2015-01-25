@@ -21,6 +21,9 @@ class Bullet : Drawable
     public bool isActive { get { return _alive; } }
     public void SetActive(bool active) { _alive = active; }
 
+    float _timeScalar = 1;
+    float timeScalar { set { _timeScalar = value; } }
+
     public Bullet()
     {
         Texture texture = Assets.GetTexture("../../images/bullet.png");
@@ -46,6 +49,6 @@ class Bullet : Drawable
 
     public void Update()
     {
-        position += _velocity * Time.deltaTime;
+        position += _velocity * Time.deltaTime * _timeScalar;
     }
 }

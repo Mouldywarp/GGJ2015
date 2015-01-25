@@ -26,6 +26,16 @@ class PlanetManager
         _timeMeBro = 1;
     }
 
+    public void Reset()
+    {
+        foreach (Planet planet in _planets)
+        {
+            planet.SetActive(false);
+        }
+        _currentPlanet = 0;
+        _timeMeBro = 1;
+    }
+
 
     public void Update()
     {

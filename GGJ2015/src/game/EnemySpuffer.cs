@@ -30,6 +30,17 @@ class EnemySpuffer
     }
 
 
+    public void Reset()
+    {
+        for (int i = _activeEnemies.Count - 1; i >= 0; i--)
+        {
+            _activeEnemies[i].SetActive(false);
+            _inactiveEnemies.Push(_activeEnemies[i]);
+            _activeEnemies.RemoveAt(i);
+        }
+    }
+
+
 
     public void CreateEnemy(Vector2f position, EnemyBehaviour.Type type)
     {

@@ -14,7 +14,8 @@ class Enemy : Drawable
     Sprite _sprite;
     EnemyBehaviour _behaveYourself;
     float _radius;
-    float _health;
+    int _health;
+    int _maxHealth = 5;
     bool _alive = false;
     BulletManager _bullets;
     Vector2f _velocity;
@@ -50,7 +51,7 @@ class Enemy : Drawable
     {
         _behaveYourself.SetBehaviour(type);
         _currentState = State.ENTERING;
-        _health = 10;
+        _health = _maxHealth;
     }
 
     public void Shoot(Vector2f bulletVelocity)
@@ -92,14 +93,10 @@ class Enemy : Drawable
     public void OnHit()
     {
         _health--;
-
-        Console.WriteLine(_health);
-
         if (_health < 1)
         {
             _alive = false;
         }
-
     }
 
 

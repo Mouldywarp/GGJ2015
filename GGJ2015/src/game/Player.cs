@@ -12,7 +12,10 @@ class Player : Drawable
     Text t_score;
     Font font;
 
-    const float SPEED = 180;
+    public bool isAlive { get { return true; } }
+    bool _alive = true;
+
+    const float SPEED = 220;
 
     const float BULLETSPEED = 1000;
     const float RATEOFFIRE = 0.035f;
@@ -51,6 +54,13 @@ class Player : Drawable
         t_score.Position = new Vector2f(10, 10);
         t_score.CharacterSize = 24;
         _creep = false;
+    }
+
+    public void Reset()
+    {
+        curScore = 0;
+        score(0);
+        _alive = true;
     }
 
     private void handleInput()
@@ -106,6 +116,7 @@ class Player : Drawable
 
     public void update()
     {
+        if (!_alive) return;
         _timer += Time.deltaTime;
 
         handleInput();
@@ -115,8 +126,16 @@ class Player : Drawable
 
     public void Draw(RenderTarget target, RenderStates states)
     {
+        if (!_alive) return;
         target.Draw(t_score);
         target.Draw(_sprite);
+    }
+
+
+    public void Die()
+    {
+        _alive = false;
+
     }
 
 }
