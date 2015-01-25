@@ -43,8 +43,8 @@ class CircleMath
 
     public static bool OffScreen(FloatRect bounds)
     {
-        if (bounds.Left + bounds.Width > Game.RES_WIDTH || bounds.Left < 0) return true;
-        if (bounds.Top + bounds.Height > Game.RES_WIDTH || bounds.Top < 0) return true;
+        if (bounds.Left + bounds.Width < 0 || bounds.Left > Game.RES_WIDTH) return true;
+        if (bounds.Top + bounds.Height < 0 || bounds.Top > Game.RES_HEIGHT) return true;
         return false;
     }
 }

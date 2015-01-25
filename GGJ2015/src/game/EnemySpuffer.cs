@@ -21,7 +21,7 @@ class EnemySpuffer
 
     public EnemySpuffer(BulletManager manageMe)
     {
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < 3; ++i)
         {
             Enemy enemy = new Enemy(manageMe);
             _inactiveEnemies.Push(enemy);

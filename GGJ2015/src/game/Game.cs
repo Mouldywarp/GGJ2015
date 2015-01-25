@@ -12,7 +12,7 @@ using SFML.Window;
  */
 public class Game
 {
-    const bool SKIP_MENU = false;
+    const bool SKIP_MENU = true;
     public const int RES_WIDTH = 1280;
     public const int RES_HEIGHT = 720;
     public const int FRAMES_PER_SECOND = 60;
