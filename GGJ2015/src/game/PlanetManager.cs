@@ -15,15 +15,13 @@ class PlanetManager
 
     public PlanetManager()
     {
-        Random random = new Random();
-        
-     //   _textures[0] = Assets.GetTexture("../../images/HassleMoon.png");
-      //  _textures[1] = Assets.GetTexture("../../images/LionelMoon.png");
+        //   _textures[0] = Assets.GetTexture("../../images/HassleMoon.png");
+        //  _textures[1] = Assets.GetTexture("../../images/LionelMoon.png");
 
         // Planet Implementation
-        _planets[0] = new Planet(random, Assets.GetTexture("../../images/HassleMoon.png"));
-        _planets[1] = new Planet(random, Assets.GetTexture("../../images/LionelMoon.png"));
-        _planets[2] = new Planet(random, Assets.GetTexture("../../images/HassleMoon.png"));
+        _planets[0] = new Planet(Assets.GetTexture("../../images/HassleMoon.png"));
+        _planets[1] = new Planet( Assets.GetTexture("../../images/LionelMoon.png"));
+        _planets[2] = new Planet( Assets.GetTexture("../../images/HassleMoon.png"));
     }
 
 

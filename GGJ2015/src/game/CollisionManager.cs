@@ -47,7 +47,7 @@ class CollisionManager
             if (CircleMath.OffScreen(planet.bounds))
             {
                 // Delete Stuff
-                planet.reset(new Random());
+                planet.reset();
                 continue;
             }
 

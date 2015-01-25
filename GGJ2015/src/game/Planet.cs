@@ -29,10 +29,10 @@ class Planet : Drawable
     public float gravitationalFieldRadius { get { return _gravitationFieldRadius; } set { _gravitationFieldRadius = value; } }
     public Vector2u textureSize { get { return _sprite.Texture.Size; } }
 
-    public Planet(Random rand, Texture texture)
+    public Planet(Texture texture)
     {
         _sprite.Texture = texture;
-        reset(rand);
+        reset();
         org.FillColor = Color.Red;
         org.Position = _sprite.Origin;
         org.Origin = new Vector2f(1, 1);
@@ -40,11 +40,11 @@ class Planet : Drawable
                
     }
 
-    public void reset(Random random)
+    public void reset()
     {
         rotation = 0;
-        position = new Vector2f(random.Next(Game.RES_WIDTH), random.Next(Game.RES_HEIGHT));
-        velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
+        position = new Vector2f(Game.random.Next(Game.RES_WIDTH), Game.random.Next(Game.RES_HEIGHT));
+        velocity = new Vector2f(Game.random.Next(-20, 20), Game.random.Next(-20, 20));
 
         //radius = random.Next(128) + 64;
         //sprite.Origin = new Vector2f(radius, radius);
@@ -52,9 +52,9 @@ class Planet : Drawable
         radius = textureSize.X * 0.5f;
 
         //sprite.Scale = new Vector2f(radius / textureSize.X, radius / textureSize.Y);
-        SetScale(0.4f);
+        SetScale(Game.random.Next(1, 5) * 0.1f);
 
-        angularVelocity = random.Next(10) + 10;
+        angularVelocity = Game.random.Next(10) + 10;
         gravitationalFieldRadius = radius + 8;
     }
 

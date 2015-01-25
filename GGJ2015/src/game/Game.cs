@@ -12,7 +12,7 @@ using SFML.Window;
  */
 public class Game
 {
-    const bool SKIP_MENU = true;
+    const bool SKIP_MENU = false;
     public const int RES_WIDTH = 1280;
     public const int RES_HEIGHT = 720;
     public const int FRAMES_PER_SECOND = 60;
@@ -158,6 +158,7 @@ public class Game
         //Vector2f position = new Vector2f(random.Next(Game.RES_WIDTH), random.Next(Game.RES_HEIGHT));
         //Vector2f velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
         //_bulletManager.CreateBullet(Bullet.Shooter.ENEMY, position, velocity);
+        _menu.Update();
     }
 
 
