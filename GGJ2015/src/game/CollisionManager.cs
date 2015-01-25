@@ -49,8 +49,8 @@ class CollisionManager
             if (CircleMath.Intersects(planet.sprite.Position, planet.gravitationalFieldRadius, _player.position, _player.radius))
             {
 
-                // Kaboom player if colliding with planet function
-
+                // Then calculate the gravitational time effect
+                Console.WriteLine(CircleMath.CalculateGravitationalTimeEffect(planet, _player.position));
 
                 // Colliding between planets and player
                 if (CircleMath.Intersects(planet.sprite.Position, planet.radius, _player.position, _player.radius))
@@ -102,8 +102,6 @@ class CollisionManager
                     // If intersecting with gravity field
                     if (CircleMath.Intersects(planet.sprite.Position, planet.gravitationalFieldRadius, bullet.position, bullet.radius))
                     {
-                        // Then calculate the gravitational time effect
-                        CircleMath.CalculateGravitationalTimeEffect(planet, bullet.position);
 
                         // Bullet Collide with Planet
                         if (CircleMath.Intersects(planet.sprite.Position, planet.radius, bullet.position, bullet.radius))
@@ -149,9 +147,7 @@ class CollisionManager
                     // If intersecting with gravity field
                     if (CircleMath.Intersects(planet.sprite.Position, planet.gravitationalFieldRadius, bullet.position, bullet.radius))
                     {
-                        // Then calculate the gravitational time effect
-                        CircleMath.CalculateGravitationalTimeEffect(planet, bullet.position);
-
+                        
                         // Bullet Collide with Planet
                         if (CircleMath.Intersects(planet.sprite.Position, planet.radius, bullet.position, bullet.radius))
                         {

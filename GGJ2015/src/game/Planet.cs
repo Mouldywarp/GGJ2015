@@ -60,7 +60,7 @@ class Planet : Drawable
         SetScale(scale);
 
         angularVelocity = Game.random.Next(10) + 10;
-        gravitationalFieldRadius = radius + 8;
+        gravitationalFieldRadius = radius + 250;
     }
 
 

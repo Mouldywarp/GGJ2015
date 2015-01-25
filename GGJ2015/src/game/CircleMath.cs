@@ -34,11 +34,21 @@ class CircleMath
     }
 
 
-    public static float CalculateGravitationalTimeEffect(Planet planet, Vector2f objPosition)
+    public static double CalculateGravitationalTimeEffect(Planet planet, Vector2f objPosition)
     {
         // Then calculate the gravitational time effect
-        float density = planet.mass / (PI * planet.radius * planet.radius);
-        return density / (CircleMath.GetSquaredDistanceBetween(planet.position, objPosition));      // Grav Effect
+        double density = planet.mass / (PI * planet.radius * planet.radius);
+
+        double gravitationalTimeScalar = 100000000 * density / (CircleMath.GetSquaredDistanceBetween(planet.position, objPosition));      // Grav Effect
+
+        if (gravitationalTimeScalar > 1)
+        {
+            gravitationalTimeScalar = 1;
+        }
+
+        return gravitationalTimeScalar;
+
+
     }
 
     public static bool OffScreen(FloatRect bounds)

@@ -93,7 +93,7 @@ class Enemy : Drawable
     {
         _health--;
 
-        Console.WriteLine(_health);
+        // Console.WriteLine(_health);
 
         if (_health < 1)
         {
