@@ -8,6 +8,9 @@ using SFML.Window;
 
 class Enemy : Drawable
 {
+    enum State { ENTERING, ONSCREEN, EXPLODING }
+    State _currentState;
+
     Sprite _sprite;
     EnemyBehaviour _behaveYourself;
     float _radius;
@@ -40,6 +43,7 @@ class Enemy : Drawable
     public void OnCreate(EnemyBehaviour.Type type)
     {
         _behaveYourself.SetBehaviour(type);
+        _currentState = State.ENTERING;
     }
 
 
@@ -47,6 +51,22 @@ class Enemy : Drawable
     {
         position += _velocity * Time.deltaTime;
         _behaveYourself.Update();
+
+        switch (_currentState)
+        {
+            case State.ENTERING:
+                if (!CircleMath.OffScreen(bounds)) _currentState = State.ONSCREEN;   
+                break;
+
+            case State.ONSCREEN:
+                if (CircleMath.OffScreen(bounds)) SetActive(false); 
+                break;
+
+            case State.EXPLODING:
+                // Animate explodyness then vanish after a while
+                break;
+
+        }
     }
 
 
@@ -56,7 +76,12 @@ class Enemy : Drawable
     }
 
 
+    // Hit by enemy bullets
+    public void OnHit()
+    {
 
+
+    }
 
 
 }
