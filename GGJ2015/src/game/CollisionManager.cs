@@ -43,14 +43,6 @@ class CollisionManager
         foreach (Planet planet in _planets)
         {
 
-            //Check if offscreen
-            if (CircleMath.OffScreen(planet.bounds))
-            {
-                // Delete Stuff
-                planet.reset(new Random());
-                continue;
-            }
-
             // 1 Player
 
             // This IF checks if the player is in the planet's gravitational field
@@ -105,17 +97,20 @@ class CollisionManager
 
             foreach (Planet planet in _planets)
             {
-                // If intersecting with gravity field
-                if (CircleMath.Intersects(planet.sprite.Position, planet.gravitationalFieldRadius, bullet.position, bullet.radius))
+                if (planet.isActive)
                 {
-                    // Then calculate the gravitational time effect
-                    CircleMath.CalculateGravitationalTimeEffect(planet, bullet.position);
-
-                    // Bullet Collide with Planet
-                    if (CircleMath.Intersects(planet.sprite.Position, planet.radius, bullet.position, bullet.radius))
+                    // If intersecting with gravity field
+                    if (CircleMath.Intersects(planet.sprite.Position, planet.gravitationalFieldRadius, bullet.position, bullet.radius))
                     {
-                        _player.score(10);
-                        bullet.SetActive(false);    // Destroy bullet
+                        // Then calculate the gravitational time effect
+                        CircleMath.CalculateGravitationalTimeEffect(planet, bullet.position);
+
+                        // Bullet Collide with Planet
+                        if (CircleMath.Intersects(planet.sprite.Position, planet.radius, bullet.position, bullet.radius))
+                        {
+                            _player.score(10);
+                            bullet.SetActive(false);    // Destroy bullet
+                        }
                     }
                 }
             }
@@ -149,18 +144,21 @@ class CollisionManager
 
             foreach (Planet planet in _planets)
             {
-                // If intersecting with gravity field
-                if (CircleMath.Intersects(planet.sprite.Position, planet.gravitationalFieldRadius, bullet.position, bullet.radius))
+                if (planet.isActive)
                 {
-                    // Then calculate the gravitational time effect
-                    CircleMath.CalculateGravitationalTimeEffect(planet, bullet.position);
-
-                    // Bullet Collide with Planet
-                    if (CircleMath.Intersects(planet.sprite.Position, planet.radius, bullet.position, bullet.radius))
+                    // If intersecting with gravity field
+                    if (CircleMath.Intersects(planet.sprite.Position, planet.gravitationalFieldRadius, bullet.position, bullet.radius))
                     {
-                        bullet.SetActive(false);    // Destroy bullet
+                        // Then calculate the gravitational time effect
+                        CircleMath.CalculateGravitationalTimeEffect(planet, bullet.position);
+
+                        // Bullet Collide with Planet
+                        if (CircleMath.Intersects(planet.sprite.Position, planet.radius, bullet.position, bullet.radius))
+                        {
+                            bullet.SetActive(false);    // Destroy bullet
+                        }
+
                     }
-                    
                 }
 
                 // Bullet Collide with player
