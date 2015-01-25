@@ -61,7 +61,7 @@ class CollisionManager
 
 
                 // Colliding between planets and player
-                if (CircleMath.Intersects(planet.sprite.Position, planet.sprite.Radius, _player.position, _player.radius))
+                if (CircleMath.Intersects(planet.sprite.Position, planet.radius, _player.position, _player.radius))
                 {
 
 
@@ -148,7 +148,7 @@ class CollisionManager
                     CircleMath.CalculateGravitationalTimeEffect(planet, bullet.position);
 
                     // Bullet Collide with Planet
-                    if (CircleMath.Intersects(planet.sprite.Position, planet.sprite.Radius, bullet.position, bullet.radius))
+                    if (CircleMath.Intersects(planet.sprite.Position, planet.radius, bullet.position, bullet.radius))
                     {
                         bullet.SetActive(false);    // Destroy bullet
                     }

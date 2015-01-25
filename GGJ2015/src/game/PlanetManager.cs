@@ -8,7 +8,8 @@ using SFML.Window;
 
 class PlanetManager
 {
-    Planet[] _planets = new Planet[5];
+    Planet[] _planets = new Planet[3];
+   // Texture[] _textures = new Texture[2];
 
     public Planet[] planets { get { return _planets; } }
 
@@ -16,11 +17,13 @@ class PlanetManager
     {
         Random random = new Random();
         
+     //   _textures[0] = Assets.GetTexture("../../images/HassleMoon.png");
+      //  _textures[1] = Assets.GetTexture("../../images/LionelMoon.png");
 
-        for (int i = 0; i < _planets.Length; ++i)
-        {
-            _planets[i] = new Planet(random);
-        }
+        // Planet Implementation
+        _planets[0] = new Planet(random, Assets.GetTexture("../../images/HassleMoon.png"));
+        _planets[1] = new Planet(random, Assets.GetTexture("../../images/LionelMoon.png"));
+        _planets[2] = new Planet(random, Assets.GetTexture("../../images/HassleMoon.png"));
     }
 
 
