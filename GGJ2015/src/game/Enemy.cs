@@ -93,6 +93,7 @@ class Enemy : Drawable
     public void OnHit()
     {
         _health--;
+
         if (_health < 1)
         {
             _alive = false;
