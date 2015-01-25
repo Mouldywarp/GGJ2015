@@ -7,12 +7,12 @@ using SFML.Window;
 
 
 class Player : Drawable
-{ 
+{
     int curScore = 0;
     Text t_score;
     Font font;
 
-    public bool isAlive { get { return true; } }
+    public bool isAlive { get { return _alive; } }
     bool _alive = true;
 
     const float SPEED = 220;

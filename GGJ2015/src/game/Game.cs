@@ -12,7 +12,7 @@ using SFML.Window;
  */
 public class Game
 {
-    const bool SKIP_MENU = false;
+    const bool SKIP_MENU = true;
     public const int RES_WIDTH = 1280;
     public const int RES_HEIGHT = 720;
     public const int FRAMES_PER_SECOND = 60;
@@ -32,6 +32,8 @@ public class Game
     Menu _menu = new Menu();
     Background _background = new Background(RES_WIDTH, RES_HEIGHT);
 
+
+    float _resetTimer = 0;
  
 
     // Create an enum of states for switching between menus and levels
@@ -149,6 +151,25 @@ public class Game
                 _player.update();
                 _enemySpuffer.Update();
                 _collisionManager.Update();
+
+                if (!_player.isAlive)
+                {
+                    _currentState = GameStates.GAME_OVER;
+                    _resetTimer = 0;
+                }
+
+                break;
+
+            //~~~~~~~~~~~~~~~~~~~~~~ U R DED
+            case GameStates.GAME_OVER:
+                _resetTimer += Time.deltaTime;
+
+                if (_resetTimer >= 3)
+                {
+                    _resetTimer = 0;
+                    Reset();
+                }
+
                 break;
 
         }
