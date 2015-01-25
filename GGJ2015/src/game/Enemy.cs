@@ -16,7 +16,7 @@ class Enemy : Drawable
     Vector2f _velocity;
 
     public Vector2f position { get { return _sprite.Position; } set { _sprite.Position = value; } }
-    public Vector2f velocity { set { _velocity = value; } }
+    public Vector2f velocity { get {return  _velocity; }  set { _velocity = value; } }
 
     public bool isActive { get { return _alive; } }
     public void SetActive(bool active) { _alive = active; }
@@ -37,7 +37,11 @@ class Enemy : Drawable
         _behaveYourself = new EnemyBehaviour(this);
     }
 
-    
+    public void OnCreate(EnemyBehaviour.Type type)
+    {
+        _behaveYourself.SetBehaviour(type);
+    }
+
 
     public void Update()
     {
@@ -50,6 +54,9 @@ class Enemy : Drawable
     {
         target.Draw(_sprite);
     }
-   
+
+
+
+
 
 }

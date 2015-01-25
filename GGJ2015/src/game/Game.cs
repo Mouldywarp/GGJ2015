@@ -5,11 +5,14 @@ using SFML;
 using SFML.Graphics;
 using SFML.Window;
 
+
+
 /*! \brief This is a swell game wot I dun
  *         
  */
 public class Game
 {
+    const bool SKIP_MENU = false;
     public const int RES_WIDTH = 1280;
     public const int RES_HEIGHT = 720;
     public const int FRAMES_PER_SECOND = 60;
@@ -17,7 +20,7 @@ public class Game
     RenderWindow _window; //!< The window we draw everything to in the game
     private float _fixedFrameTimer;
     private float _frameDelay = 1 / FRAMES_PER_SECOND;
-    Random random = new Random();
+    //Random random = new Random();
 
     // Game Objects
     BulletManager _bulletManager = new BulletManager();
@@ -26,13 +29,8 @@ public class Game
     CollisionManager _collisionManager;
 
     Player _player;
-
+    Menu _menu = new Menu();
     Background _background = new Background(RES_WIDTH, RES_HEIGHT);
-
-
-
-
-
 
  
 
@@ -65,6 +63,7 @@ public class Game
         Time.CreateTime(this);
 
         Initialize();
+        if (SKIP_MENU) _currentState = GameStates.PLAYING_LEVEL;
 
         // Game loop
         while (_window.IsOpen())
@@ -165,7 +164,6 @@ public class Game
 
 
     //#################################### DRAW EVERYTHING!!!!!!
-    Menu _menu = new Menu();
     void Draw()
     {
         switch (_currentState)

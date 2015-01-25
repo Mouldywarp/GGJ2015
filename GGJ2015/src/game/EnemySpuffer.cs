@@ -21,7 +21,7 @@ class EnemySpuffer
 
     public EnemySpuffer(BulletManager manageMe)
     {
-        for (int i = 0; i < 100; ++i)
+        for (int i = 0; i < 10; ++i)
         {
             Enemy enemy = new Enemy(manageMe);
             _inactiveEnemies.Push(enemy);
@@ -30,14 +30,14 @@ class EnemySpuffer
 
 
 
-    public void CreateEnemy(Vector2f position, Vector2f velocity)
+    public void CreateEnemy(Vector2f position, EnemyBehaviour.Type type)
     {
         if (_inactiveEnemies.Count == 0) return;
         Enemy newEnemy = _inactiveEnemies.Pop();
         newEnemy.SetActive(true);
         newEnemy.position = position;
+        newEnemy.OnCreate(type);
         _activeEnemies.Add(newEnemy);
-        newEnemy.velocity = velocity;
     }
 
 
@@ -48,7 +48,12 @@ class EnemySpuffer
         if (_spuffTimer >= _spuffFrequency)
         {
             _spuffTimer = 0;
-            CreateEnemy(new Vector2f(Game.RES_WIDTH + 100, _random.Next(50, Game.RES_HEIGHT - 50)), new Vector2f(-200, 0));
+            int max = (int)EnemyBehaviour.Type.NUM_BEHAVIOURS;
+            int type = _random.Next(max);
+
+
+            //CreateEnemy(new Vector2f(Game.RES_WIDTH + 100, _random.Next(50, Game.RES_HEIGHT - 50)), new Vector2f(-200, 0), (EnemyBehaviour.Type)type);
+            CreateEnemy(new Vector2f(Game.RES_WIDTH + 100, _random.Next(50, Game.RES_HEIGHT - 50)), EnemyBehaviour.Type.DIVE);
         }
 
 
