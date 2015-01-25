@@ -62,7 +62,6 @@ public class Game
         // Create Time!!
         Time.CreateTime(this);
 
-        Initialize();
         if (SKIP_MENU) _currentState = GameStates.PLAYING_LEVEL;
 
         // Game loop
@@ -110,9 +109,16 @@ public class Game
     public delegate void UpdateEventHandler();
     public event UpdateEventHandler UpdateEvent;
 
-    void Initialize()
+
+
+    // Call to reset teh game
+    void Reset()
     {
-        //_collisionManager = new CollisionManager(_bulletManager.playerBullets, _bulletManager.enemyBullets, _enemySpuffer.enemies, _planetManager.planets, _player);
+        _player.Reset();
+        _enemySpuffer.Reset();
+        _bulletManager.Reset();
+        _planetManager.Reset();
+        _currentState = GameStates.MAIN_MENU;
     }
 
 
@@ -134,7 +140,7 @@ public class Game
 
             //~~~~~~~~~~~~~~~~~~~~~~ PLAYING LEVEL!
             case GameStates.PLAYING_LEVEL:
-                if (Input.getKey(Keyboard.Key.H)) _currentState = GameStates.MAIN_MENU; // H is quit?
+                if (Input.getKey(Keyboard.Key.H)) Reset(); // H is quit?
 
                 // All update code here!
                 _planetManager.Update();

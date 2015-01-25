@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using SFML;
 using SFML.Graphics;
 using SFML.Window;
+using SFML.Audio;
 
 
 class EnemySpuffer
@@ -16,15 +17,26 @@ class EnemySpuffer
 
 
     float _spuffTimer = 0;
-    float _spuffFrequency = 0.5f;
+    float _spuffFrequency = 1.0f;
 
 
     public EnemySpuffer(BulletManager manageMe)
     {
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 20; ++i)
         {
             Enemy enemy = new Enemy(manageMe);
             _inactiveEnemies.Push(enemy);
+        }
+    }
+
+
+    public void Reset()
+    {
+        for (int i = _activeEnemies.Count - 1; i >= 0; i--)
+        {
+            _activeEnemies[i].SetActive(false);
+            _inactiveEnemies.Push(_activeEnemies[i]);
+            _activeEnemies.RemoveAt(i);
         }
     }
 
@@ -51,9 +63,11 @@ class EnemySpuffer
             int max = (int)EnemyBehaviour.Type.NUM_BEHAVIOURS;
             int type = Game.random.Next(max);
 
-
-            //CreateEnemy(new Vector2f(Game.RES_WIDTH + 100, _random.Next(50, Game.RES_HEIGHT - 50)), new Vector2f(-200, 0), (EnemyBehaviour.Type)type);
-            CreateEnemy(new Vector2f(Game.RES_WIDTH + 100, Game.random.Next(50, Game.RES_HEIGHT - 50)), EnemyBehaviour.Type.DIVE);
+            for (int i = 0; i < 3; i++)
+            {
+                CreateEnemy(new Vector2f(Game.RES_WIDTH + Game.random.Next(150, 750), Game.random.Next(50, Game.RES_HEIGHT - 50)), (EnemyBehaviour.Type)type);
+                type = Game.random.Next(max);
+            }
         }
 
 

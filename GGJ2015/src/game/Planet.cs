@@ -8,8 +8,7 @@ using SFML.Window;
 class Planet : Drawable
 {
     Sprite _sprite = new Sprite();
-    CircleShape org = new CircleShape();
-    // using sprites properties (radius, position etc)
+    bool _active = false;
     Vector2f _position;
     Vector2f _velocity;
     float _radius;
@@ -29,33 +28,42 @@ class Planet : Drawable
     public float gravitationalFieldRadius { get { return _gravitationFieldRadius; } set { _gravitationFieldRadius = value; } }
     public Vector2u textureSize { get { return _sprite.Texture.Size; } }
 
+
+    public bool isActive { get { return _active; } }
+    public void SetActive(bool active) { _active = active; }
+    bool onscreen = false;
+
+
+
     public Planet(Texture texture)
     {
         _sprite.Texture = texture;
-        reset();
-        org.FillColor = Color.Red;
-        org.Position = _sprite.Origin;
-        org.Origin = new Vector2f(1, 1);
-        org.Radius = 2;
+        Reset();
+        //org.FillColor = Color.Red;
+        //org.Position = _sprite.Origin;
+        //org.Origin = new Vector2f(1, 1);
+        //org.Radius = 2;
                
     }
 
-    public void reset()
+    public void Reset()
     {
+        onscreen = false;
         rotation = 0;
-        position = new Vector2f(Game.random.Next(Game.RES_WIDTH), Game.random.Next(Game.RES_HEIGHT));
-        velocity = new Vector2f(Game.random.Next(-20, 20), Game.random.Next(-20, 20));
 
-        //radius = random.Next(128) + 64;
-        //sprite.Origin = new Vector2f(radius, radius);
+
+        float scale = ((float)Game.random.NextDouble() * 0.5f) + 0.5f;
+
+        position = new Vector2f(Game.RES_WIDTH + (scale * textureSize.X), Game.random.Next(Game.RES_HEIGHT));
+        velocity = new Vector2f(-80, 0);
         _sprite.Origin = new Vector2f(textureSize.X * 0.5f, textureSize.Y * 0.5f);
         radius = textureSize.X * 0.5f;
 
-        //sprite.Scale = new Vector2f(radius / textureSize.X, radius / textureSize.Y);
-        SetScale(Game.random.Next(1, 5) * 0.1f);
+
+        SetScale(scale);
 
         angularVelocity = Game.random.Next(10) + 10;
-        gravitationalFieldRadius = radius + 8;
+        gravitationalFieldRadius = radius + 250;
     }
 
 
@@ -68,14 +76,28 @@ class Planet : Drawable
 
     public void Draw(RenderTarget target, RenderStates states)
     {
+        if (!_active) return;
         target.Draw(_sprite);
-        target.Draw(org);
+        //target.Draw(org);
     }
 
     public void Update()
     {
+        if (!_active) return;
         sprite.Position += _velocity * Time.deltaTime;
         sprite.Rotation += _angularVelocity * Time.deltaTime;
-       org.Position = sprite.Position;
+       //org.Position = sprite.Position;
+
+        // CHECK SCREEN LIKE ENEMIES
+        switch (onscreen)
+        {
+            case false:
+                if (!CircleMath.OffScreen(bounds)) onscreen = true;
+                break;
+
+            case true:
+                if (CircleMath.OffScreen(bounds)) SetActive(false);
+                break;
+        }
     }
 }
