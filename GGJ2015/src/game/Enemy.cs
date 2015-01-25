@@ -39,8 +39,8 @@ class Enemy : Drawable
     public Enemy(BulletManager bulletManager)
     {
         _sprite = new Sprite(Assets.GetTexture("../../images/enemy.png"));
-        _sprite.Origin = new Vector2f(32, 16);
-        _radius = 16;
+        _sprite.Origin = new Vector2f(77, 66);
+        _radius = 20;
         _health = 10;       // Takes 10 shots to kill an enemy
         _bullets = bulletManager;
         _behaveYourself = new EnemyBehaviour(this);
