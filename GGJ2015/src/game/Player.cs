@@ -16,7 +16,7 @@ class Player : Drawable
     bool _alive = true;
 
     const float SPEED = 220;
-
+    int coutner = 0;
     const float BULLETSPEED = 1000;
     const float RATEOFFIRE = 0.035f;
 
@@ -129,19 +129,7 @@ class Player : Drawable
 
     public void Draw(RenderTarget target, RenderStates states)
     {
-        if (!_alive)
-        {
-            _timer += Time.deltaTime;
-            if (_timer < 0.25)
-            {
-                _sprite.Color = Color.Red;
-                target.Draw(_sprite);
-            }
-            else if (_timer > 0.5)
-            {
-                _timer = 0;
-            } return;
-        }
+        
         target.Draw(t_score);
         target.Draw(_sprite);
     }

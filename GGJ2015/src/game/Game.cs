@@ -133,7 +133,7 @@ public class Game
         {
             //~~~~~~~~~~~~~~~~~~~~~~ MAIN MENU!
             case GameStates.MAIN_MENU:
-                if (Input.getKey(Keyboard.Key.G) == true)
+                if (Input.getKey(Keyboard.Key.Return) == true || Input.getKey(Keyboard.Key.Space) == true)
                 {
                     // Reset function needed here
                     _currentState = GameStates.PLAYING_LEVEL;
