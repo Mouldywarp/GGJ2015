@@ -39,7 +39,7 @@ class CircleMath
         // Then calculate the gravitational time effect
         double density = planet.mass / (PI * planet.radius * planet.radius);
 
-        double gravitationalTimeScalar = 100000000 * density / (CircleMath.GetSquaredDistanceBetween(planet.position, objPosition));      // Grav Effect
+        double gravitationalTimeScalar = 100000000 * 1.2 * density / (CircleMath.GetSquaredDistanceBetween(planet.position, objPosition));      // Grav Effect
 
         if (gravitationalTimeScalar > 1)
         {

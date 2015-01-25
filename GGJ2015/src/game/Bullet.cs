@@ -22,7 +22,7 @@ class Bullet : Drawable
     public void SetActive(bool active) { _alive = active; }
 
     float _timeScalar = 1;
-    float timeScalar { set { _timeScalar = value; } }
+    public float timeScalar { set { _timeScalar = value; } }
 
     public Bullet()
     {

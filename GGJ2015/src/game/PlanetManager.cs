@@ -17,7 +17,6 @@ class PlanetManager
 
     public PlanetManager()
     {
-
         // Planet Implementation
         _planets[0] = new Planet(Assets.GetTexture("../../images/HassleMoon.png"));
         _planets[0].mass = 100;

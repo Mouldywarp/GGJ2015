@@ -21,6 +21,9 @@ class Enemy : Drawable
     Vector2f _velocity;
     Vector2f _gunPos = new Vector2f(50, 50); // offset to Gary's mouth from top corner of image, so he shoot stuff from his mouth
 
+    float _timeScalar = 1;
+    public float timeScalar { set { _timeScalar = value; } }
+
     public Vector2f position { get { return _sprite.Position; } set { _sprite.Position = value; } }
     public Vector2f velocity { get {return  _velocity; }  set { _velocity = value; } }
     public bool onScreen { get { return _currentState == State.ONSCREEN; } } 
@@ -62,7 +65,7 @@ class Enemy : Drawable
 
     public void Update()
     {
-        position += _velocity * Time.deltaTime;
+        position += _velocity * Time.deltaTime * _timeScalar;
         _behaveYourself.Update();
 
         switch (_currentState)

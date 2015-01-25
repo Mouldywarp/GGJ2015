@@ -22,6 +22,9 @@ class Player : Drawable
 
     static float _timer;
 
+    float _timeScalar = 1;
+    public float timeScalar { set { _timeScalar = value; } }
+
     public void score(int num)
     {
         curScore += num;
@@ -70,19 +73,19 @@ class Player : Drawable
 
         if (Input.getKey(Keyboard.Key.W) == true || Input.getKey(Keyboard.Key.Up))
         {
-            if(_sprite.Position.Y -90 > 0) _velocity.Y = -SPEED;
+            if(_sprite.Position.Y > 0) _velocity.Y = -SPEED;
         }
         if (Input.getKey(Keyboard.Key.S) == true || Input.getKey(Keyboard.Key.Down))
         {
-            if (_sprite.Position.Y + 90 < Game.RES_HEIGHT) _velocity.Y = SPEED;
+            if (_sprite.Position.Y < Game.RES_HEIGHT) _velocity.Y = SPEED;
         }
         if (Input.getKey(Keyboard.Key.D) == true || Input.getKey(Keyboard.Key.Right))
         {
-            if (_sprite.Position.X + 90 < Game.RES_WIDTH) _velocity.X = SPEED;
+            if (_sprite.Position.X < Game.RES_WIDTH) _velocity.X = SPEED;
         }
         if (Input.getKey(Keyboard.Key.A) == true || Input.getKey(Keyboard.Key.Left))
         {
-            if (_sprite.Position.X - 90 > 0) _velocity.X = -SPEED;
+            if (_sprite.Position.X > 0) _velocity.X = -SPEED;
         }
         if (Input.getKey(Keyboard.Key.LShift) == true)
         {
@@ -97,11 +100,11 @@ class Player : Drawable
     {
         if (_creep == true)
         {
-            _sprite.Position += (_velocity * 0.5f) * Time.deltaTime;
+            _sprite.Position += (_velocity * 0.5f) * Time.deltaTime * _timeScalar;
         }
         else
         {
-            _sprite.Position += _velocity * Time.deltaTime;
+            _sprite.Position += _velocity * Time.deltaTime * _timeScalar;
         }
     }
 
@@ -126,7 +129,19 @@ class Player : Drawable
 
     public void Draw(RenderTarget target, RenderStates states)
     {
-        if (!_alive) return;
+        if (!_alive)
+        {
+            _timer += Time.deltaTime;
+            if (_timer < 0.25)
+            {
+                _sprite.Color = Color.Red;
+                target.Draw(_sprite);
+            }
+            else if (_timer > 0.5)
+            {
+                _timer = 0;
+            } return;
+        }
         target.Draw(t_score);
         target.Draw(_sprite);
     }
