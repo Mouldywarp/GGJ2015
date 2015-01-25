@@ -30,22 +30,15 @@ public class Game
     Background _background = new Background(RES_WIDTH, RES_HEIGHT);
 
 
-    // Menu Text
 
-    Text title;
-    Text pressGToPlay;
-    Font font;
 
 
 
  
 
     // Create an enum of states for switching between menus and levels
-    public enum GameStates {
-        mainMenu, playingLevel, pause
-    };
-
-    GameStates value = GameStates.mainMenu;
+    public enum GameStates { MAIN_MENU, PLAYING_LEVEL, PAUSE, GAME_OVER };
+    GameStates _currentState = GameStates.MAIN_MENU;
 
 
 
@@ -53,20 +46,7 @@ public class Game
     {
         _enemySpuffer = new EnemySpuffer(_bulletManager);
         _player = new Player(new Vector2f(100, RES_HEIGHT / 2), _bulletManager);
-
-
-        // Setup Main Menu Text
-
-        font = new Font("../../fonts/arial.ttf");
-
-        title = new Text("Title Goes Here", font);
-        title.Position = new Vector2f(20, 20);
-        title.CharacterSize = 24;
-
-        pressGToPlay = new Text("press G to play", font);
-        pressGToPlay.Position = new Vector2f(20, 50);
-        pressGToPlay.CharacterSize = 24;
-
+        _collisionManager = new CollisionManager(_bulletManager.playerBullets, _bulletManager.enemyBullets, _enemySpuffer.enemies, _planetManager.planets, _player);
     }
 
     public void RunGame()
@@ -99,24 +79,11 @@ public class Game
             _fixedFrameTimer += Time.deltaTime;
             if (_fixedFrameTimer >= _frameDelay)
             {
-                FixedUpdate();
-              
+                FixedUpdate();           
                 _fixedFrameTimer = 0;
             }
 
-            if (value == GameStates.mainMenu)
-            {
-                _background.Draw(_window);
-                _window.Draw(title);
-                _window.Draw(pressGToPlay);
-                
-            }
-
-            if (value == GameStates.playingLevel)
-            {
-                Draw();
-            }
-
+            Draw();
             _window.Display();
         }
     }
@@ -146,55 +113,45 @@ public class Game
 
     void Initialize()
     {
-        _collisionManager = new CollisionManager(_bulletManager.playerBullets, _bulletManager.enemyBullets, _enemySpuffer.enemies, _planetManager.planets, _player);
-        //_enemySpuffer.CreateEnemy(new Vector2f(RES_WIDTH * 0.5f, RES_HEIGHT * 0.5f), new Vector2f(-200, 0));
+        //_collisionManager = new CollisionManager(_bulletManager.playerBullets, _bulletManager.enemyBullets, _enemySpuffer.enemies, _planetManager.planets, _player);
     }
-  
+
+
+
+    //################################   UPDATE!!!!!!!!
+
     void Update()
     {
-        // All update code here!
-	    _planetManager.Update();
-        _bulletManager.Update();
-        _background.update();
-        _player.update();
-        _enemySpuffer.Update();
-        
-       
-        // Collision Updates
-        _collisionManager.Update();
-
-        if (Input.getKey(Keyboard.Key.G) == true)
+        switch (_currentState)
         {
-            if (!(value == GameStates.playingLevel))
-            {
-                // Reset function needed here
-                value = GameStates.playingLevel;
-            }
-        }
+            //~~~~~~~~~~~~~~~~~~~~~~ MAIN MENU!
+            case GameStates.MAIN_MENU:
+                if (Input.getKey(Keyboard.Key.G) == true)
+                {
+                    // Reset function needed here
+                    _currentState = GameStates.PLAYING_LEVEL;
+                }
+                break;
 
-        if (Input.getKey(Keyboard.Key.H) == true)
-        {
-            if (!(value == GameStates.mainMenu))
-            {
-                value = GameStates.mainMenu;
-            }
-        }
+            //~~~~~~~~~~~~~~~~~~~~~~ PLAYING LEVEL!
+            case GameStates.PLAYING_LEVEL:
+                if (Input.getKey(Keyboard.Key.H)) _currentState = GameStates.MAIN_MENU; // H is quit?
 
-        if (Input.getKey(Keyboard.Key.P))
-        {
-            Vector2f position = new Vector2f(random.Next(Game.RES_WIDTH), random.Next(Game.RES_HEIGHT));
-            Vector2f velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
-            _bulletManager.CreateBullet(Bullet.Shooter.PLAYER, position, velocity);
-        }
+                // All update code here!
+                _planetManager.Update();
+                _bulletManager.Update();
+                _background.update();
+                _player.update();
+                _enemySpuffer.Update();
+                _collisionManager.Update();
+                break;
 
-
-        if (Input.getKey(Keyboard.Key.E))
-        {
-            Vector2f position = new Vector2f(random.Next(Game.RES_WIDTH), random.Next(Game.RES_HEIGHT));
-            Vector2f velocity = new Vector2f(random.Next(-20, 20), random.Next(-20, 20));
-            _bulletManager.CreateBullet(Bullet.Shooter.ENEMY, position, velocity);
         }
     }
+
+
+
+    //#################################### FIXED UPDATE! PROBABLY NOT USED LOLLLLL!
 
     void FixedUpdate()
     {
@@ -204,16 +161,32 @@ public class Game
         //_bulletManager.CreateBullet(Bullet.Shooter.ENEMY, position, velocity);
     }
 
+
+
+
+    //#################################### DRAW EVERYTHING!!!!!!
+    Menu _menu = new Menu();
     void Draw()
     {
-        // All draw code here
-        _background.Draw(_window);
+        switch (_currentState)
+        {
+            //~~~~~~~~~~~~~~~~~~~~~~ MAIN MENU!
+            case GameStates.MAIN_MENU:
+                _background.Draw(_window);
+                _window.Draw(_menu);
+                break;
 
-        _bulletManager.DrawBullets(_window);
-        _planetManager.DrawPlanets(_window);
-        _window.Draw(_player);
-        _enemySpuffer.DrawEnemies(_window);
-        
+            //~~~~~~~~~~~~~~~~~~~~~~ PLAYING LEVEL!
+            case GameStates.PLAYING_LEVEL:
+                _background.Draw(_window);
+                _bulletManager.DrawBullets(_window);
+                _planetManager.DrawPlanets(_window);
+                _window.Draw(_player);
+                _enemySpuffer.DrawEnemies(_window);
+                break;
+
+        }
+
     }
 
 }

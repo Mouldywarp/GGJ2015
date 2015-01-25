@@ -54,10 +54,12 @@
     <Compile Include="src\game\Background.cs" />
     <Compile Include="src\game\CollisionManager.cs" />
     <Compile Include="src\game\Enemy.cs" />
+    <Compile Include="src\game\EnemyBehaviour.cs" />
     <Compile Include="src\game\EnemySpuffer.cs" />
     <Compile Include="src\game\Game.cs" />
     <Compile Include="src\game\CircleMath.cs" />
     <Compile Include="src\game\Input.cs" />
+    <Compile Include="src\game\Menu.cs" />
     <Compile Include="src\game\Planet.cs" />
     <Compile Include="src\game\PlanetManager.cs" />
     <Compile Include="src\game\Player.cs" />

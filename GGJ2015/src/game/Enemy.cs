@@ -9,6 +9,7 @@ using SFML.Window;
 class Enemy : Drawable
 {
     Sprite _sprite;
+    EnemyBehaviour _behaveYourself;
     float _radius;
     bool _alive = false;
     BulletManager _bullets;
@@ -23,12 +24,17 @@ class Enemy : Drawable
 
     
     Random random = new Random();
+    
+
+    // FUNCTIONS
+    // Constructinator
     public Enemy(BulletManager bulletManager)
     {
         _sprite = new Sprite(Assets.GetTexture("../../images/enemy.png"));
         _sprite.Origin = new Vector2f(32, 16);
         _radius = 16;
         _bullets = bulletManager;
+        _behaveYourself = new EnemyBehaviour(this);
     }
 
     
@@ -36,6 +42,7 @@ class Enemy : Drawable
     public void Update()
     {
         position += _velocity * Time.deltaTime;
+        _behaveYourself.Update();
     }
 
 
