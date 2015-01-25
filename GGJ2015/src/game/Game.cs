@@ -12,7 +12,7 @@ using SFML.Window;
  */
 public class Game
 {
-    const bool SKIP_MENU = true;
+    const bool SKIP_MENU = false;
     public const int RES_WIDTH = 1280;
     public const int RES_HEIGHT = 720;
     public const int FRAMES_PER_SECOND = 60;
@@ -164,7 +164,7 @@ public class Game
             case GameStates.GAME_OVER:
                 _resetTimer += Time.deltaTime;
 
-                if (_resetTimer >= 3)
+                if (_resetTimer >= 0.5f)
                 {
                     _resetTimer = 0;
                     Reset();
