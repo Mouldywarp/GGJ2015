@@ -8,7 +8,7 @@ using SFML.Window;
 
 class EnemySpuffer
 {
-    Random _random = new Random();
+    //Random _random = new Random();
     Stack<Enemy> _inactiveEnemies = new Stack<Enemy>();
     List<Enemy> _activeEnemies = new List<Enemy>();
 
@@ -49,11 +49,11 @@ class EnemySpuffer
         {
             _spuffTimer = 0;
             int max = (int)EnemyBehaviour.Type.NUM_BEHAVIOURS;
-            int type = _random.Next(max);
+            int type = Game.random.Next(max);
 
 
             //CreateEnemy(new Vector2f(Game.RES_WIDTH + 100, _random.Next(50, Game.RES_HEIGHT - 50)), new Vector2f(-200, 0), (EnemyBehaviour.Type)type);
-            CreateEnemy(new Vector2f(Game.RES_WIDTH + 100, _random.Next(50, Game.RES_HEIGHT - 50)), EnemyBehaviour.Type.DIVE);
+            CreateEnemy(new Vector2f(Game.RES_WIDTH + 100, Game.random.Next(50, Game.RES_HEIGHT - 50)), EnemyBehaviour.Type.DIVE);
         }
 
 

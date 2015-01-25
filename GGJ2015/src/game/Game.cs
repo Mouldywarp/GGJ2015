@@ -20,7 +20,7 @@ public class Game
     RenderWindow _window; //!< The window we draw everything to in the game
     private float _fixedFrameTimer;
     private float _frameDelay = 1 / FRAMES_PER_SECOND;
-    //Random random = new Random();
+    public static Random random = new Random();
 
     // Game Objects
     BulletManager _bulletManager = new BulletManager();
@@ -177,10 +177,10 @@ public class Game
             //~~~~~~~~~~~~~~~~~~~~~~ PLAYING LEVEL!
             case GameStates.PLAYING_LEVEL:
                 _background.Draw(_window);
-                _bulletManager.DrawBullets(_window);
                 _planetManager.DrawPlanets(_window);
-                _window.Draw(_player);
                 _enemySpuffer.DrawEnemies(_window);
+                _window.Draw(_player);
+                _bulletManager.DrawBullets(_window);
                 break;
 
         }

@@ -17,9 +17,12 @@ class Enemy : Drawable
     bool _alive = false;
     BulletManager _bullets;
     Vector2f _velocity;
+    Vector2f _gunPos = new Vector2f(50, 50); // offset to Gary's mouth from top corner of image, so he shoot stuff from his mouth
 
     public Vector2f position { get { return _sprite.Position; } set { _sprite.Position = value; } }
     public Vector2f velocity { get {return  _velocity; }  set { _velocity = value; } }
+    public bool onScreen { get { return _currentState == State.ONSCREEN; } } 
+    public bool isDead { get { return _currentState == State.EXPLODING; } }
 
     public bool isActive { get { return _alive; } }
     public void SetActive(bool active) { _alive = active; }
@@ -44,6 +47,11 @@ class Enemy : Drawable
     {
         _behaveYourself.SetBehaviour(type);
         _currentState = State.ENTERING;
+    }
+
+    public void Shoot(Vector2f bulletVelocity)
+    {
+        _bullets.CreateBullet(Bullet.Shooter.ENEMY, position + _gunPos, bulletVelocity);
     }
 
 

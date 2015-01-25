@@ -47,5 +47,15 @@ class CircleMath
         if (bounds.Top + bounds.Height < 0 || bounds.Top > Game.RES_WIDTH) return true;
         return false;
     }
+
+    public static float Radians(float degrees)
+    {
+        return (PI / 180) * degrees;
+    }
+
+    public static float Degrees(float radians)
+    {
+        return (180 / PI) * radians;
+    }
 }
 
